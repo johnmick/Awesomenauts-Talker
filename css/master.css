@@ -1,0 +1,33 @@
+body
+{
+  background-color:#000000;
+  font-color:#FFFFFF;
+  overflow:none;
+}
+
+div#MAIN
+{
+  width:800px;
+  height:800px;
+  border:1px solid #FFFFFF;
+  margin:0px auto 0px auto;
+  background:url('../images/misc/backgradient.png') repeat-x;
+}
+
+div#AWESOME_LOGO
+{
+  background-image:url('../images/logos/awesomenaughts.png');
+  width:750px;
+  height:158px;
+  margin:0px auto 0px auto;
+}
+
+div#PORTRAIT
+{
+  border:1px solid #FFFFFF;
+  width:450px;
+  height:630px;
+  margin-left:10px;
+  background:url('../images/portraits/lonestar.jpg');
+  background-size:contain;
+}

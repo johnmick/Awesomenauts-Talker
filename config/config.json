@@ -1,0 +1,21 @@
+{
+  "CHARACTERS": {
+    "Lonestar": {
+      "PORTRAIT_SRC": "./images/portraits/lonestar.jpg",
+      "PHRASES": [
+
+      ]
+    },
+    
+    "Froggy G": {
+      "PORTRAIT_SRC": "./images/portraits/froggy_g.jpg",
+      "PHRASES": [
+
+      ]
+    }
+  },
+
+  "UI": {
+    "ROMINO_LOGO_SRC": "./images/logos/romino.jpg",
+  }
+}
