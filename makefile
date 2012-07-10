@@ -6,9 +6,9 @@ COMPILER_DIR = /cygdrive/d/Google\ Closure\ Compiler/compiler.jar
 
 BASE_FILES = ${SRC_DIR}/intro.js\
 	${SRC_DIR}/core.js\
-	${SRC_DIR}/main.js\
 	${SRC_DIR}/awesomeselector.js\
 	${SRC_DIR}/awesomephrases.js\
+	${SRC_DIR}/main.js\
 	${SRC_DIR}/outro.js
 
 ${APP_NAME} = ${BUILD_DIR}/${APP_NAME}.js
