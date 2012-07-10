@@ -1,33 +1,46 @@
 body
 {
   background-color:#000000;
-  font-color:#FFFFFF;
   overflow:none;
 }
 
+/* Main Container for Application */
 div#MAIN
 {
   width:800px;
-  height:800px;
+  height:600px;
   border:1px solid #FFFFFF;
   margin:0px auto 0px auto;
   background:url('../images/misc/backgradient.png') repeat-x;
 }
 
+/* DIV Container for Awesome Logo */
 div#AWESOME_LOGO
 {
-  background-image:url('../images/logos/awesomenaughts.png');
+  background:url('../images/logos/awesomenauts.png') no-repeat center;
+  background-size:contain;
   width:750px;
-  height:158px;
+  height:80px;
   margin:0px auto 0px auto;
 }
 
+/* Container handling Portrait Titles and Images */
+div#PORTRAIT_CONTAINER
+{
+  margin:10px 0px 0px 10px;
+  width:305px;
+  height:530px;
+  font-size:30px;
+  color:#FFFFFF;
+  text-align:center;
+}
+
+/* Portrait Image Container */
 div#PORTRAIT
 {
-  border:1px solid #FFFFFF;
-  width:450px;
-  height:630px;
-  margin-left:10px;
-  background:url('../images/portraits/lonestar.jpg');
+  width:305px;
+  height:430px;
+  margin:5px auto 0px auto;
+  background:url('../images/logos/ronimo.png') no-repeat;
   background-size:contain;
 }

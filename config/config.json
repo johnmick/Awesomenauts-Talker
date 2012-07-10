@@ -3,6 +3,7 @@
     "Lonestar": {
       "PORTRAIT_SRC": "./images/portraits/lonestar.jpg",
       "PHRASES": [
+        { "TXT": "Time to", "SRC": "./audio/lonestar/timeto.wav", "X": 10, "Y": 10 }
 
       ]
     },
@@ -16,6 +17,6 @@
   },
 
   "UI": {
-    "ROMINO_LOGO_SRC": "./images/logos/romino.jpg",
+    "ROMINO_LOGO_SRC": "./images/logos/romino.jpg"
   }
 }
