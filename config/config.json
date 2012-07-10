@@ -1,22 +1,53 @@
 {
   "CHARACTERS": {
+    "Clunk": {
+      "PORTRAIT_SRC": "./images/portraits/clunk.jpg",
+      "ICON_SRC": "./images/icons/clunk.png",
+      "PHRASES": [
+
+      ]
+    },
+
+    "Froggy G": {
+      "PORTRAIT_SRC": "./images/portraits/froggy_g.jpg",
+      "ICON_SRC": "./images/icons/froggy_g.png",
+      "PHRASES": [
+
+      ]
+    },
+
+    "Leon": {
+      "PORTRAIT_SRC": "./images/portraits/leon.jpg",
+      "ICON_SRC": "./images/icons/leon.png",
+      "PHRASES": [
+
+      ]
+    },
+
     "Lonestar": {
       "PORTRAIT_SRC": "./images/portraits/lonestar.jpg",
+      "ICON_SRC": "./images/icons/lonestar.png",
       "PHRASES": [
         { "TXT": "Time to", "SRC": "./audio/lonestar/timeto.wav", "X": 10, "Y": 10 }
 
       ]
     },
     
-    "Froggy G": {
-      "PORTRAIT_SRC": "./images/portraits/froggy_g.jpg",
+
+    "Voltar": {
+      "PORTRAIT_SRC": "./images/portraits/voltar.jpg",
+      "ICON_SRC": "./images/icons/voltar.png",
+      "PHRASES": [
+
+      ]
+    },
+
+    "Yuri": {
+      "PORTRAIT_SRC": "./images/portraits/yuri.jpg",
+      "ICON_SRC": "./images/icons/yuri.png",
       "PHRASES": [
 
       ]
     }
-  },
-
-  "UI": {
-    "ROMINO_LOGO_SRC": "./images/logos/romino.jpg"
   }
 }
