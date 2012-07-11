@@ -6,6 +6,27 @@ body
   font-family:sans-serif;
 }
 
+a:link 
+{ 
+  color:#FFFFB0;
+}
+
+a:visited 
+{
+  color:#FFFFB0;
+} 
+
+a:hover 
+{
+  color:#FFFFE0;
+  font-weight:bold;
+}
+
+a:active 
+{
+  color:#FFFFB0;
+}
+
 /* 
   Main Container for Application 
 */
