@@ -4,7 +4,10 @@
       "PORTRAIT_SRC": "./images/portraits/clunk.jpg",
       "ICON_SRC": "./images/icons/clunk.png",
       "PHRASES": [
-
+        { "TXT": "Ready", "SRC": "./audio/lonestar/timeto.wav", "X": 10, "Y": 30 },
+        { "TXT": "To", "SRC": "./audio/lonestar/kickbutt.wav", "X": 400, "Y": 70 },
+        { "TXT": "Go", "SRC": "./audio/lonestar/chew.wav", "X": 150, "Y": 130 },
+        { "TXT": "Clunk", "SRC": "./audio/lonestar/tobacco.wav", "X": 250, "Y": 260 }
       ]
     },
 
@@ -12,7 +15,11 @@
       "PORTRAIT_SRC": "./images/portraits/froggy_g.jpg",
       "ICON_SRC": "./images/icons/froggy_g.png",
       "PHRASES": [
-
+        { "TXT": "The", "SRC": "./audio/lonestar/timeto.wav", "X": 0, "Y": 0 },
+        { "TXT": "Frog", "SRC": "./audio/lonestar/kickbutt.wav", "X": 300, "Y": 40 },
+        { "TXT": "Can't", "SRC": "./audio/lonestar/chew.wav", "X": 150, "Y": 90 },
+        { "TXT": "Touch", "SRC": "./audio/lonestar/tobacco.wav", "X": 250, "Y": 160 },
+        { "TXT": "This", "SRC": "./audio/lonestar/and.wav", "X": 300, "Y": 280 }
       ]
     },
 
@@ -20,7 +27,11 @@
       "PORTRAIT_SRC": "./images/portraits/leon.jpg",
       "ICON_SRC": "./images/icons/leon.png",
       "PHRASES": [
-
+        { "TXT": "Feel the", "SRC": "./audio/lonestar/timeto.wav", "X": 100, "Y": 30 },
+        { "TXT": "Sharpness of", "SRC": "./audio/lonestar/kickbutt.wav", "X": 300, "Y": 80 },
+        { "TXT": "This Blade", "SRC": "./audio/lonestar/chew.wav", "X": 170, "Y": 190 },
+        { "TXT": "Fear the", "SRC": "./audio/lonestar/tobacco.wav", "X": 250, "Y": 160 },
+        { "TXT": "Chameleon", "SRC": "./audio/lonestar/and.wav", "X": 100, "Y": 280 }
       ]
     },
 
@@ -28,17 +39,23 @@
       "PORTRAIT_SRC": "./images/portraits/lonestar.jpg",
       "ICON_SRC": "./images/icons/lonestar.png",
       "PHRASES": [
-        { "TXT": "Time to", "SRC": "./audio/lonestar/timeto.wav", "X": 10, "Y": 10 }
-
+        { "TXT": "Time to", "SRC": "./audio/lonestar/timeto.wav", "X": 10, "Y": 20 },
+        { "TXT": "Kick Butt", "SRC": "./audio/lonestar/kickbutt.wav", "X": 300, "Y": 40 },
+        { "TXT": "Chew", "SRC": "./audio/lonestar/chew.wav", "X": 15, "Y": 90 },
+        { "TXT": "Tobacco", "SRC": "./audio/lonestar/tobacco.wav", "X": 250, "Y": 160 },
+        { "TXT": "And", "SRC": "./audio/lonestar/and.wav", "X": 30, "Y": 280 }
       ]
     },
-    
 
     "Voltar": {
       "PORTRAIT_SRC": "./images/portraits/voltar.jpg",
       "ICON_SRC": "./images/icons/voltar.png",
       "PHRASES": [
-
+        { "TXT": "More Technology", "SRC": "./audio/lonestar/timeto.wav", "X": 10, "Y": 20 },
+        { "TXT": "I Require", "SRC": "./audio/lonestar/kickbutt.wav", "X": 300, "Y": 40 },
+        { "TXT": "Death To", "SRC": "./audio/lonestar/chew.wav", "X": 150, "Y": 90 },
+        { "TXT": "Squishy", "SRC": "./audio/lonestar/tobacco.wav", "X": 250, "Y": 160 },
+        { "TXT": "Things", "SRC": "./audio/lonestar/and.wav", "X": 300, "Y": 280 }
       ]
     },
 
@@ -46,7 +63,8 @@
       "PORTRAIT_SRC": "./images/portraits/yuri.jpg",
       "ICON_SRC": "./images/icons/yuri.png",
       "PHRASES": [
-
+        { "TXT": "Shiny", "SRC": "./audio/lonestar/timeto.wav", "X": 10, "Y": 20 },
+        { "TXT": "Technology", "SRC": "./audio/lonestar/kickbutt.wav", "X": 300, "Y": 40 }
       ]
     }
   }

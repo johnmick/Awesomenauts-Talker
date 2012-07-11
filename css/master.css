@@ -3,6 +3,7 @@ body
   background-color:#000000;
   overflow:none;
   color:#FFFFFF;
+  font-family:sans-serif;
 }
 
 /* 
@@ -15,6 +16,12 @@ body
     border:1px solid #FFFFFF;
     margin:0px auto 0px auto;
     background:url('../images/misc/backgradient.png') repeat-x;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
   }
 
 
@@ -91,16 +98,24 @@ body
 
   div#PHRASES
   {
+    position:relative;
     height:400px;
     width:465px;
-    border:1px dashed white;
+    font-size:25px;
+    padding-top:10px;
   }
 
-  diV#VCR
+  div#VCR
   {
     width:465px;
     height:25px;
     border:1px dashed white;
+  }
+
+  div#CREDITS
+  {
+    font-size:10px;
+    text-align:center;
   }
 
 /*
@@ -111,4 +126,12 @@ body
     float:left;
     margin:0px 5px 0px 2px;
     cursor:pointer;
+  }
+
+  div.PHRASE_BUTTON
+  {
+    position:absolute;
+    font-size:25px;
+    cursor:pointer;
+    padding:2px 2px 2px 2px;
   }
