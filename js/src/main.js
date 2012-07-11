@@ -1,4 +1,3 @@
-
 /*-----------------*\
 | MAIN Entry Point |
 \*-----------------*/
@@ -7,11 +6,11 @@
  // Otherwise Output Error to Console
 
 (function(){
-  // Obtain Configuration Data File from Server
-
+  // Obtain a Reference to the Loading Message Container and Update Label
   var loadingMessages = document.getElementById("MESSAGES");
   loadingMessages.innerHTML = "Now Loading...";
-
+  
+  // Obtain Configuration Data File from Server
   $.ajax({
     cache:    false,
     dataType: "json",
