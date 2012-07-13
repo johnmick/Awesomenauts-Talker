@@ -4,7 +4,7 @@ var AwesomeTalker;
     AwesomeTalker = function(config) {
       AwesomeSelector(config.CHARACTERS);
       AwesomePhrases(config.CHARACTERS);
-
+      AwesomeSounds(config);
       $("#LEFT_COLUMN").fadeIn();
       $("#RIGHT_COLUMN").fadeIn();
 
