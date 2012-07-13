@@ -3,9 +3,10 @@ var AwesomeTalker;
 
 (function(){
     AwesomeTalker = function(config) {
-      AwesomeSelector(config.CHARACTERS);
-      AwesomePhrases(config.CHARACTERS);
-      AwesomeSounds(config);
+      AwesomeTalker.AwesomeSelector = AwesomeSelector(config.CHARACTERS);
+      AwesomeTalker.AwesomePhrases  = AwesomePhrases(config.CHARACTERS);
+      AwesomeTalker.AwesomeSounds   = AwesomeSounds(config);
+
       $("#LEFT_COLUMN").fadeIn();
       $("#RIGHT_COLUMN").fadeIn();
 
@@ -39,6 +40,15 @@ var AwesomeSelector;
         icon.style.backgroundImage = "url('" + characters[character].ICON_SRC + "')";
         $(icon).data(characters[character]);
         $(icon).click(characterSelected);
+        $(icon).hover(
+          function() {
+            AwesomeSounds.play("UI", "UI_ICON_MOUSE_OVER");
+            this.style.backgroundImage = "url('" + $(this).data().ICON_SRC_ALT + "')";
+          },
+          function() {
+            this.style.backgroundImage = "url('" + $(this).data().ICON_SRC + "')"; 
+          }
+        );
         frag.appendChild(icon);
       }
       container.appendChild(frag);
@@ -47,6 +57,7 @@ var AwesomeSelector;
     };
 
     function characterSelected() {
+      AwesomeSounds.play("UI", "UI_ICON_CLICK");
       portrait.style.backgroundImage = "url('" + $(this).data().PORTRAIT_SRC + "')";
       AwesomePhrases.showPhrases($(this).data().PHRASES);
     }
@@ -64,6 +75,8 @@ var AwesomePhrases;
 
   AwesomePhrases = function(config) {
     container = document.getElementById(phrasesID);
+
+    return AwesomePhrases;
   };
 
   AwesomePhrases.showPhrases = function(phrases) {
@@ -95,26 +108,53 @@ var AwesomePhrases;
 var AwesomeSounds;
 
 (function(){
+  var sounds       = {},
+      currentMusic = undefined
+  ;
+
   AwesomeSounds = function(config) {
     soundManager.setup({
       onready:function(){
         loadSounds(config);
       }
     });
+
+    return AwesomeSounds;
+  };
+
+  AwesomeSounds.switchMusic = function(category, track) {
+    currentMusic.stop();
+    currentMusic = sounds[category][track];
+    currentMusic.play();
+  };
+
+  AwesomeSounds.play = function(category, track) {
+    sounds[category][track].play();
   };
 
   function loadSounds(config) {
-    console.log("SoundManager2 Loaded, Ready To Load Sounds");
-    console.log(config);
+    // Pre-Load All UI Sounds
+    sounds.UI = {};
+    var uiSounds = config.UI.SOUNDS;
+    for (var i=0; i < uiSounds.length; i++)
+    {
+      var sound = uiSounds[i];
+      sounds.UI[sound.id] = soundManager.createSound(
+        buildSoundOptions(sound)
+      );
+    }
+    currentMusic = sounds["UI"]["UI_TITLE_MUSIC"];
 
-    /*
-    var mySound = soundManager.createSound({
-      id: 'aSound',
-      url: '/path/to/an.mp3'
-      // onload: function() { console.log('sound loaded!', this); }
-    });
-    mySound.play();
-    */
+    // Helper Function to Build SoundManager2 Options for Sounds
+    function buildSoundOptions(opts) {
+      var soundOpts = {};
+      for (var opt in opts)
+      {
+        soundOpts[opt] = opts[opt];
+      }
+
+      return soundOpts;
+    }
   }
 })();
 

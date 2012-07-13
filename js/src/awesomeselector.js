@@ -25,6 +25,15 @@ var AwesomeSelector;
         icon.style.backgroundImage = "url('" + characters[character].ICON_SRC + "')";
         $(icon).data(characters[character]);
         $(icon).click(characterSelected);
+        $(icon).hover(
+          function() {
+            AwesomeSounds.play("UI", "UI_ICON_MOUSE_OVER");
+            this.style.backgroundImage = "url('" + $(this).data().ICON_SRC_ALT + "')";
+          },
+          function() {
+            this.style.backgroundImage = "url('" + $(this).data().ICON_SRC + "')"; 
+          }
+        );
         frag.appendChild(icon);
       }
       container.appendChild(frag);
@@ -33,6 +42,7 @@ var AwesomeSelector;
     };
 
     function characterSelected() {
+      AwesomeSounds.play("UI", "UI_ICON_CLICK");
       portrait.style.backgroundImage = "url('" + $(this).data().PORTRAIT_SRC + "')";
       AwesomePhrases.showPhrases($(this).data().PHRASES);
     }

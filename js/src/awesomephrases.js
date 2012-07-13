@@ -11,6 +11,8 @@ var AwesomePhrases;
 
   AwesomePhrases = function(config) {
     container = document.getElementById(phrasesID);
+
+    return AwesomePhrases;
   };
 
   AwesomePhrases.showPhrases = function(phrases) {
