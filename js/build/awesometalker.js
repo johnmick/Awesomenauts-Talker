@@ -6,6 +6,7 @@ var AwesomeTalker;
       AwesomeTalker.AwesomeSelector = AwesomeSelector(config.CHARACTERS);
       AwesomeTalker.AwesomePhrases  = AwesomePhrases(config.CHARACTERS);
       AwesomeTalker.AwesomeSounds   = AwesomeSounds(config);
+      AwesomeTalker.AwesomeVCR      = AwesomeVCR(config);
 
       $("#LEFT_COLUMN").fadeIn();
       $("#RIGHT_COLUMN").fadeIn();
@@ -160,6 +161,49 @@ var AwesomeSounds;
 
 // Before DOM Load - Configure SoundManager2 with Updated SWF Path
 soundManager.setup({url:"./swf/"});
+var AwesomeVCR;
+
+(function(){
+  var playButton,
+      recordButton,
+      stopButton,
+      shareButton
+  ;
+
+  AwesomeVCR = function() {
+    playButton = document.getElementById("PLAY_BUTTON");
+    recordButton = document.getElementById("RECORD_BUTTON");
+    stopButton = document.getElementById("STOP_BUTTON");
+    shareButton = document.getElementById("SHARE_BUTTON");
+
+    $(recordButton).click(startRecording);
+    $(stopButton).click(stopRecording);
+    $(playButton).click(play);
+    $(shareButton).click(share);
+    
+    return AwesomeVCR;
+  };
+
+  function startRecording() {
+    this.style.display = "none";
+    stopButton.style.display = "block";
+    console.log("Start Recording");
+  }
+
+  function stopRecording() {
+    this.style.display = "none";
+    recordButton.style.display = "block";
+    console.log("Stop Recording");
+  }
+
+  function play() {
+    console.log("Play");
+  }
+
+  function share() {
+    console.log("Share");
+  }
+})();
 /*-----------------*\
 | MAIN Entry Point |
 \*-----------------*/
