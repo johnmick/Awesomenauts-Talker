@@ -9,6 +9,7 @@ BASE_FILES = ${SRC_DIR}/intro.js\
 	${SRC_DIR}/awesomeselector.js\
 	${SRC_DIR}/awesomephrases.js\
 	${SRC_DIR}/awesomesounds.js\
+	${SRC_DIR}/awesomevcr.js\
 	${SRC_DIR}/main.js\
 	${SRC_DIR}/outro.js
 

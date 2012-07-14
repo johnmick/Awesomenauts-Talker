@@ -1,9 +1,9 @@
 {
   "UI": {
     "SOUNDS":[
-      { "id": "UI_TITLE_MUSIC",     "url":"./audio/music/title.mp3",        "autoPlay": true, "volume":50 },
-      { "id": "UI_ICON_CLICK",      "url":"./audio/ui/icon_click.wav",      "autoPlay": false, "volume":75 },
-      { "id": "UI_ICON_MOUSE_OVER", "url":"./audio/ui/icon_mouse_over.wav", "autoPlay": false, "volume":75 }
+      { "id": "UI_TITLE_MUSIC",     "url":"./audio/music/title.mp3",        "autoPlay": false, "volume":50 },
+      { "id": "UI_ICON_CLICK",      "url":"./audio/ui/icon_click.wav",      "autoPlay": false, "volume":100 },
+      { "id": "UI_ICON_MOUSE_OVER", "url":"./audio/ui/icon_mouse_over.wav", "autoPlay": false, "volume":100 }
     ]
   },
 
