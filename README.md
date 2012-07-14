@@ -1,4 +1,4 @@
-Awesomenaughts-Talker
+Awesomenauts-Talker
 ====================
 
-An Open-Source "Talker" Application Inspired by Romino's Awesomenaughts
+An Open-Source "Talker" Application Inspired by Ronimo's Awesomenaughts
