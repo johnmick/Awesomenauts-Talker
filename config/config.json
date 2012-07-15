@@ -20,7 +20,7 @@
       ]
     },
 
-    "Froggy G": {
+    "Froggy_G": {
       "PORTRAIT_SRC": "./images/portraits/froggy_g.jpg",
       "ICON_SRC": "./images/icons/froggy_g.png",
       "ICON_SRC_ALT": "./images/icons/froggy_g_hover.png",

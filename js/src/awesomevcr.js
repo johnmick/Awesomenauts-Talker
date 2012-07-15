@@ -103,10 +103,34 @@ var AwesomeVCR;
   }
 
   function share() {
-    AwesomeMessage.show(
-      window.location.href,
-      false
-    );
+    if (recording.length > 0)
+    {
+      function generateShareLink() {
+        var phrases = timing = "";
+        for (var i=0; i < recording.length; i++)
+        {
+          phrases += recording[i].PHRASE + ",";
+          timing  += recording[i].TIME   + ",";
+        }
+        phrases = phrases.substring(0, phrases.length-1);
+        timing  = timing .substring(0, timing .length-1);
+        return window.location.href.replace("index.htm","sharing.htm") + 
+               "?c=" + character +
+               "&p=" + phrases   +
+               "&t=" + timing;
+      }
+      AwesomeMessage.show(
+        generateShareLink(),
+        false
+      );
+    }
+    else
+    {
+      AwesomeMessage.show(
+        "Unable to generate a phrase link,<br/>nothing has been recorded yet.<br/><br/>Press the Record Button and Make a Phrase First.",
+        4000
+      );
+    }
   }
 
   function resetRecordEndTimer() {
