@@ -27,6 +27,17 @@ a:active
   color:#FFFFB0;
 }
 
+.unselectable
+{
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+}
+
 /* 
   Main Container for Application 
 */
@@ -38,12 +49,6 @@ a:active
     border:1px solid #FFFFFF;
     margin:0px auto 0px auto;
     background:url('../images/misc/backgradient.png') repeat-x;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
   }
 
 /* 
@@ -72,9 +77,15 @@ a:active
     left:0px;
   }
 
+  #SHARE_LINK_TEXT
+  {
+    width:288px;
+  }
+
   td#AWESOME_MESSAGE
   {
     height:200px;
+    text-align:center;
   }
 
   div#AWESOME_MESSAGE_HIDE_BUTTON

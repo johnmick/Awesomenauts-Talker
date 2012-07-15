@@ -50,6 +50,13 @@ var AwesomeVCR;
     }
   };
 
+  AwesomeVCR.reset = function() {
+    AwesomeVCR.stopPlayback();
+    stopRecording();
+    active = false;
+    recording = [];
+  };
+
   AwesomeVCR.stopPlayback = function() {
     clearTimeout(playbackTimer);
   };
@@ -105,7 +112,9 @@ var AwesomeVCR;
   function share() {
     if (recording.length > 0)
     {
-      function generateShareLink() {
+      stopRecording();
+      function generateShareLink() 
+      {
         var phrases = timing = "";
         for (var i=0; i < recording.length; i++)
         {
@@ -119,8 +128,20 @@ var AwesomeVCR;
                "&p=" + phrases   +
                "&t=" + timing;
       }
+
+      function generateShareHTML()
+      {
+        return 'Copy Link Below and Paste to Share' +
+                '<input type="text" id="SHARE_LINK_TEXT" value="' + 
+                  generateShareLink() + 
+                '"></input><br/><br/>Or<br/><br/>' + 
+                '<a href="' + generateShareLink() + '" target="_blank">Click Here To Preview</a><br/><br/>'
+                ;
+        //return '<a href="' + generateShareLink() + '" target="_blank">Copy This Link To Share</a>';
+      }
+
       AwesomeMessage.show(
-        generateShareLink(),
+        generateShareHTML(),
         false
       );
     }

@@ -49,10 +49,15 @@ var AwesomeSelector;
 
     function characterSelected() {
       var data = $(this).data();
-      AwesomeSounds.play("UI", "UI_ICON_CLICK");
-      portrait.style.backgroundImage = "url('" + $(this).data().PORTRAIT_SRC + "')";
-      AwesomePhrases.showPhrases(data.Character, data.PHRASES);
-      AwesomeVCR.show();
-      currentCharacter = data.Character;
+
+      if (data.Character !== currentCharacter)
+      {
+        AwesomeSounds.play("UI", "UI_ICON_CLICK");
+        portrait.style.backgroundImage = "url('" + $(this).data().PORTRAIT_SRC + "')";
+        AwesomePhrases.showPhrases(data.Character, data.PHRASES);
+        AwesomeVCR.show();
+        AwesomeVCR.reset();
+        currentCharacter = data.Character;
+      }
     }
 })();
