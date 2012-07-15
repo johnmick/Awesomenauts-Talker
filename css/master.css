@@ -32,6 +32,7 @@ a:active
 */
   div#MAIN
   {
+    position:relative;
     width:800px;
     height:600px;
     border:1px solid #FFFFFF;
@@ -45,6 +46,52 @@ a:active
     user-select: none;
   }
 
+/* 
+  Awesome Message 
+*/
+  div#AWESOME_MESSAGE_DIALOG
+  {
+    position:absolute;
+    width:300px;
+    height:200px;
+    top:200px;
+    left:250px;
+    border:5px solid #FFFFB0;
+    background:url('../images/misc/backgradient.png') repeat-x;
+    text-align:center;
+    padding:0px 0px 0px 0px;
+    margin:0px 0px 0px 0px;
+    z-index:100;
+    display:none;
+  }
+
+  table#AWESOME_MESSAGE_TABLE
+  {
+    position:absolute;
+    top:0px;
+    left:0px;
+  }
+
+  td#AWESOME_MESSAGE
+  {
+    height:200px;
+  }
+
+  div#AWESOME_MESSAGE_HIDE_BUTTON
+  {
+    position:absolute;
+    cursor:pointer;
+    bottom:0px;
+    width:100px;
+    margin-left:94px;
+    padding:2px 2px 2px 2px;
+    border-left:2px solid #FFFFB0;
+    border-right:2px solid #FFFFB0;
+    border-top:2px solid #FFFFB0;
+    background-color:#FFFFB0;
+    color:#000000;
+    font-weight:bold;
+  }
 
 /* 
   Container for Awesome Logo 
@@ -128,6 +175,7 @@ a:active
 
   div#VCR
   {
+    display:none;
     width:465px;
     height:25px;
   }
@@ -188,7 +236,7 @@ a:active
 
   div#STOP_BUTTON
   {
-    background:url('../images/vcr/pause.png') center no-repeat;
+    background:url('../images/vcr/stop.png') center no-repeat;
     background-size:contain;
     width:45px;
     height:25px;

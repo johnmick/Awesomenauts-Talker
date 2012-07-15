@@ -6,7 +6,8 @@ var AwesomeSelector;
       iconSize   = { x:"70px", y:"70px" },
       frag       = document.createDocumentFragment(),
       container,
-      portrait
+      portrait,
+      currentCharacter
   ;
 
     AwesomeSelector = function(characters) {
@@ -24,6 +25,7 @@ var AwesomeSelector;
         icon.style.height          = iconSize.y;
         icon.style.backgroundImage = "url('" + characters[character].ICON_SRC + "')";
         $(icon).data(characters[character]);
+        $(icon).data("Character", character);
         $(icon).click(characterSelected);
         $(icon).hover(
           function() {
@@ -41,9 +43,16 @@ var AwesomeSelector;
 		  return AwesomeSelector;
     };
 
+    AwesomeSelector.getCurrentCharacter = function() {
+      return currentCharacter;
+    };
+
     function characterSelected() {
+      var data = $(this).data();
       AwesomeSounds.play("UI", "UI_ICON_CLICK");
       portrait.style.backgroundImage = "url('" + $(this).data().PORTRAIT_SRC + "')";
-      AwesomePhrases.showPhrases($(this).data().PHRASES);
+      AwesomePhrases.showPhrases(data.Character, data.PHRASES);
+      AwesomeVCR.show();
+      currentCharacter = data.Character;
     }
 })();

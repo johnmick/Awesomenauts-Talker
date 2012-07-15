@@ -15,11 +15,12 @@ var AwesomePhrases;
     return AwesomePhrases;
   };
 
-  AwesomePhrases.showPhrases = function(phrases) {
+  AwesomePhrases.showPhrases = function(character, phrases) {
     for (var i=phrases.length-1; i > -1; i--)
     {
       var phrase = document.createElement("DIV");
       $(phrase).data(phrases[i]);
+      $(phrase).data("Character", character);
       phrase.className  = "PHRASE_BUTTON";
       phrase.innerHTML  = phrases[i].TXT;
       phrase.style.top  = phrases[i].Y + "px";
@@ -31,9 +32,11 @@ var AwesomePhrases;
       $(phrase).mousedown( function(){ this.style.fontWeight = "bold"; this.style.color = downColor; } );
       $(phrase).mouseup( function(){  this.style.fontWeight  = "normal"; this.style.color = normalColor; } );
       $(phrase).click( function(){ 
+        var data = $(this).data();
         this.style.fontWeight = "normal"; 
         this.style.color = normalColor;
-        console.log($(this).data()); 
+        AwesomeSounds.play(data.Character, data.TXT);
+        AwesomeVCR.RecordPhrase(data.TXT);
       });
       frag.appendChild(phrase);
     }

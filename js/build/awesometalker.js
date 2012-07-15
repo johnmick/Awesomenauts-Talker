@@ -7,6 +7,7 @@ var AwesomeTalker;
       AwesomeTalker.AwesomePhrases  = AwesomePhrases(config.CHARACTERS);
       AwesomeTalker.AwesomeSounds   = AwesomeSounds(config);
       AwesomeTalker.AwesomeVCR      = AwesomeVCR(config);
+      AwesomeTalker.AwesomeMessage  = AwesomeMessage(config);
 
       $("#LEFT_COLUMN").fadeIn();
       $("#RIGHT_COLUMN").fadeIn();
@@ -22,7 +23,8 @@ var AwesomeSelector;
       iconSize   = { x:"70px", y:"70px" },
       frag       = document.createDocumentFragment(),
       container,
-      portrait
+      portrait,
+      currentCharacter
   ;
 
     AwesomeSelector = function(characters) {
@@ -40,6 +42,7 @@ var AwesomeSelector;
         icon.style.height          = iconSize.y;
         icon.style.backgroundImage = "url('" + characters[character].ICON_SRC + "')";
         $(icon).data(characters[character]);
+        $(icon).data("Character", character);
         $(icon).click(characterSelected);
         $(icon).hover(
           function() {
@@ -57,10 +60,17 @@ var AwesomeSelector;
 		  return AwesomeSelector;
     };
 
+    AwesomeSelector.getCurrentCharacter = function() {
+      return currentCharacter;
+    };
+
     function characterSelected() {
+      var data = $(this).data();
       AwesomeSounds.play("UI", "UI_ICON_CLICK");
       portrait.style.backgroundImage = "url('" + $(this).data().PORTRAIT_SRC + "')";
-      AwesomePhrases.showPhrases($(this).data().PHRASES);
+      AwesomePhrases.showPhrases(data.Character, data.PHRASES);
+      AwesomeVCR.show();
+      currentCharacter = data.Character;
     }
 })();
 var AwesomePhrases;
@@ -80,11 +90,12 @@ var AwesomePhrases;
     return AwesomePhrases;
   };
 
-  AwesomePhrases.showPhrases = function(phrases) {
+  AwesomePhrases.showPhrases = function(character, phrases) {
     for (var i=phrases.length-1; i > -1; i--)
     {
       var phrase = document.createElement("DIV");
       $(phrase).data(phrases[i]);
+      $(phrase).data("Character", character);
       phrase.className  = "PHRASE_BUTTON";
       phrase.innerHTML  = phrases[i].TXT;
       phrase.style.top  = phrases[i].Y + "px";
@@ -96,9 +107,11 @@ var AwesomePhrases;
       $(phrase).mousedown( function(){ this.style.fontWeight = "bold"; this.style.color = downColor; } );
       $(phrase).mouseup( function(){  this.style.fontWeight  = "normal"; this.style.color = normalColor; } );
       $(phrase).click( function(){ 
+        var data = $(this).data();
         this.style.fontWeight = "normal"; 
         this.style.color = normalColor;
-        console.log($(this).data()); 
+        AwesomeSounds.play(data.Character, data.TXT);
+        AwesomeVCR.RecordPhrase(data.TXT);
       });
       frag.appendChild(phrase);
     }
@@ -129,8 +142,9 @@ var AwesomeSounds;
     currentMusic.play();
   };
 
-  AwesomeSounds.play = function(category, track) {
-    sounds[category][track].play();
+  AwesomeSounds.play = function(cat, track) {
+    sounds[cat] !== undefined ? sounds[cat][track] !== undefined ? (sounds[cat][track].play(),console.log(cat,track)) : notFound() : notFound();
+    function notFound() { console.log("Unable to Find Sounds Reference to:", cat, track); }
   };
 
   function loadSounds(config) {
@@ -145,6 +159,23 @@ var AwesomeSounds;
       );
     }
     currentMusic = sounds["UI"]["UI_TITLE_MUSIC"];
+
+    // Pre-Load All Character Phrases
+    for (var  characterName in config.CHARACTERS)
+    {
+      var characterPhrases = config.CHARACTERS[characterName].PHRASES;
+      sounds[characterName] = {};
+      for (var i=0; i < characterPhrases.length; i++)
+      {
+        var phrase = characterPhrases[i];
+        sounds[characterName][phrase.TXT] = soundManager.createSound({
+          id: characterName + "_" + phrase.TXT,
+          url: phrase.SRC,
+          autoLoad: true,
+          volume: 100
+        });
+      }
+    }
 
     // Helper Function to Build SoundManager2 Options for Sounds
     function buildSoundOptions(opts) {
@@ -161,16 +192,65 @@ var AwesomeSounds;
 
 // Before DOM Load - Configure SoundManager2 with Updated SWF Path
 soundManager.setup({url:"./swf/"});
+var AwesomeMessage;
+
+(function(){
+  var containerID = "AWESOME_MESSAGE_DIALOG",
+      messageID   = "AWESOME_MESSAGE", 
+      hideButtonID = "AWESOME_MESSAGE_HIDE_BUTTON",
+      container,
+      message,
+      displayTimer,
+      hideButton
+  ;
+
+  AwesomeMessage = function() {
+    container = document.getElementById(containerID);
+    message   = document.getElementById(messageID);
+    hideButton = document.getElementById(hideButtonID);
+
+    $(hideButton).click(AwesomeMessage.hide);
+  };
+
+  AwesomeMessage.show = function(text, hideTime) {
+    message.innerHTML = text;
+    hideButton.style.display = "none";
+    $(container).fadeIn();
+
+    clearTimeout(displayTimer);
+    if (hideTime !== false)
+    {
+      displayTimer = setTimeout(AwesomeMessage.hide, hideTime);
+    }
+    else
+    {
+      hideButton.style.display = "block";
+    }
+  };
+
+  AwesomeMessage.hide = function() {
+    $(container).fadeOut();
+  };
+})();
 var AwesomeVCR;
 
 (function(){
-  var playButton,
+  var active = false,
+      recordEndTimeout = 5000,
+      recording = [],
+      recordEndTimer,
+      playbackTimer,
+      character,
+      timeStamp,
+      playButton,
       recordButton,
       stopButton,
-      shareButton
+      shareButton,
+      container
   ;
 
   AwesomeVCR = function() {
+    container = document.getElementById("VCR");
     playButton = document.getElementById("PLAY_BUTTON");
     recordButton = document.getElementById("RECORD_BUTTON");
     stopButton = document.getElementById("STOP_BUTTON");
@@ -178,30 +258,94 @@ var AwesomeVCR;
 
     $(recordButton).click(startRecording);
     $(stopButton).click(stopRecording);
-    $(playButton).click(play);
+    $(playButton).click(playButtonClick);
     $(shareButton).click(share);
     
     return AwesomeVCR;
   };
 
+  AwesomeVCR.show = function() {
+    $(container).fadeIn();
+  };
+  
+  AwesomeVCR.hide = function() {
+    $(container).fadeOut();
+  };
+
+  AwesomeVCR.RecordPhrase = function(phrase) {
+    if (active === true)
+    {
+      recording.push({
+        "PHRASE": phrase,
+        "TIME": new Date() - timeStamp
+      });
+      timeStamp = new Date();
+      resetRecordEndTimer();
+    }
+  };
+
+  AwesomeVCR.stopPlayback = function() {
+    clearTimeout(playbackTimer);
+  };
+
   function startRecording() {
-    this.style.display = "none";
+    AwesomeMessage.hide();
+    recordButton.style.display = "none";
     stopButton.style.display = "block";
-    console.log("Start Recording");
+    active = true;
+    AwesomeVCR.stopPlayback();
+    recording = [];
+    resetRecordEndTimer();
+    character = AwesomeSelector.getCurrentCharacter();
   }
 
   function stopRecording() {
-    this.style.display = "none";
+    stopButton.style.display = "none";
     recordButton.style.display = "block";
-    console.log("Stop Recording");
+    active = false;
+    if (recording.length > 0)
+    {
+      recording[0].TIME = 0;
+    }
   }
 
-  function play() {
-    console.log("Play");
+  function playButtonClick() {
+    AwesomeVCR.stopPlayback();
+    if (active === true) { stopRecording(); }
+    if (recording.length > 0)
+    {
+      play(0);
+    }
+    else
+    {
+      AwesomeMessage.show(
+        "Unable to playback a phrase,<br/>nothing has been recorded yet.<br/><br/>Press the Record Button and Make a Phrase First.",
+        4000
+      );
+    }
+  }
+
+  function play(playbackIndex) {
+    function delayedPlayCall() {
+      AwesomeSounds.play(character, recording[playbackIndex].PHRASE);
+      play(++playbackIndex);
+    }
+    if (recording[playbackIndex] !== undefined)
+    {
+      playbackTimer = setTimeout(delayedPlayCall, recording[playbackIndex].TIME);
+    }
   }
 
   function share() {
-    console.log("Share");
+    AwesomeMessage.show(
+      window.location.href,
+      false
+    );
+  }
+
+  function resetRecordEndTimer() {
+    clearTimeout(recordEndTimer);
+    recordEndTimer = setTimeout(stopRecording, recordEndTimeout);
   }
 })();
 /*-----------------*\
