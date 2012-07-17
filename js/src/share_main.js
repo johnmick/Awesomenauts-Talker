@@ -17,7 +17,7 @@
 
     if (validationStatus === true)
     {
-      console.log("Valid Data, Ready to Go", shareData);
+      window.MyAwesomeSharing = AwesomeSharing(shareData, configData);
     }
     else
     {
@@ -38,7 +38,7 @@
   }
 
   function getCharacterPhrasesAndTiming(configData) {
-    var fullUri = window.location.href;
+    var fullUri = decodeURI(window.location.href);
     var getParams = fullUri.slice(fullUri.indexOf('?') + 1).split('&');
     var data = {};
     var readers = {
@@ -94,6 +94,8 @@
     {
       var phrases = shareRequest.P;
       var configCharacterPhrases = configData.CHARACTERS[shareRequest.C].PHRASES;
+
+      console.log(phrases, configCharacterPhrases);
       for (var i=phrases.length-1; i > -1; i--)
       {
         var phraseConfigAvailable = false;

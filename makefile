@@ -16,6 +16,7 @@ BASE_FILES = ${SRC_DIR}/intro.js\
 
 SHARE_FILES = ${SRC_DIR}/intro.js\
   ${SRC_DIR}/share_core.js\
+  ${SRC_DIR}/share_ui.js\
   ${SRC_DIR}/awesomesounds.js\
   ${SRC_DIR}/awesomemessage.js\
   ${SRC_DIR}/share_main.js\

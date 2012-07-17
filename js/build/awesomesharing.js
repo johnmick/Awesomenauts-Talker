@@ -2,19 +2,110 @@
 var AwesomeSharing;
 
 (function(){
-  AwesomeSharing = function(config) {
+  var numSoundsToLoad = 0,
+      numSoundsLoaded = 0,
+      playbackData
+  ;
+
+  AwesomeSharing = function(shareData, configData) {
+    playbackData = shareData;
+    AwesomeSharing.awesomesounds = AwesomeSounds(buildSoundConfig(), true);
+    AwesomeSharing.awesomeshareui = AwesomeShareUI(configData.CHARACTERS[shareData.C], shareData.P);
+
+    function buildSoundConfig()
+    {
+      var uniquePhrases = {};
+      for (var i=0; i < shareData.P.length; i++)
+      {
+        if (uniquePhrases[shareData.P[i]] === undefined)
+        {
+          uniquePhrases[shareData.P[i]] = audioSource(shareData.C, shareData.P[i]);
+        }
+      }
+      var phrases = [];
+      for (var phrase in uniquePhrases)
+      {
+        numSoundsToLoad++;
+        phrases.push(uniquePhrases[phrase]);
+      }
+
+      var soundConf = { CHARACTERS: {} };
+      soundConf.CHARACTERS[shareData.C] = configData.CHARACTERS[shareData.C];
+      soundConf.CHARACTERS[shareData.C].PHRASES = phrases;
+
+      return soundConf;
+
+      function audioSource(character, phraseName)
+      {
+        var configPhrases = configData.CHARACTERS[character].PHRASES;
+        for (var i=configPhrases.length-1; i > -1; i--)
+        {
+          if (configPhrases[i].TXT === phraseName)
+          {
+            return configPhrases[i];
+          }
+        }
+      }
+    }
 
     return AwesomeSharing;
   };
+
+  AwesomeSharing.checkLoadStatus = function() {
+    if (++numSoundsLoaded  == numSoundsToLoad)
+    {
+      AwesomeSharing.playSounds();
+    }
+  };
+
+  AwesomeSharing.playSounds = function() {
+    var character = playbackData.C;
+    var phrases   = playbackData.P;
+    var timings   = playbackData.T;
+    var playbackTimer;
+    play(0);
+
+    function play(playbackIndex) {
+      function delayedPlayCall() {
+        AwesomeSounds.play(character, phrases[playbackIndex]);
+        play(++playbackIndex);
+      }
+      if (phrases[playbackIndex] !== undefined)
+      {
+        playbackTimer = setTimeout(delayedPlayCall, timings[playbackIndex]);
+      }
+    }
+  }
+
+})();
+var AwesomeShareUI;
+
+(function(){
+  AwesomeShareUI = function(characterConfig, phrases) {
+    console.log("Awesome Share UI", characterConfig, phrases);
+    document.getElementById("LEFT_COLUMN").style.display = "block";
+    document.getElementById("RIGHT_COLUMN").style.display = "block";
+    document.getElementById("RIGHT_COLUMN").style.overflowX = "auto";
+    document.getElementById("PHRASES").style.width = "445px";
+    document.getElementById("PHRASES_MESSAGE").style.width = "445px";
+    document.getElementById("PORTRAIT").style.backgroundImage = "url('" + characterConfig.PORTRAIT_SRC + "')";
+    var phraseContainer = document.getElementById("PHRASES_MESSAGE");
+    phraseContainer.innerHTML = '"' + phrases.join(" ") + '."';
+
+    return AwesomeShareUI;
+  };
+
 })();
 var AwesomeSounds;
 
 (function(){
   var sounds       = {},
-      currentMusic = undefined
+      currentMusic = undefined,
+      initializedBySharing = false
   ;
 
-  AwesomeSounds = function(config) {
+  AwesomeSounds = function(config, initByShare) {
+    initializedBySharing = initByShare;
     soundManager.setup({
       onready:function(){
         loadSounds(config);
@@ -37,16 +128,19 @@ var AwesomeSounds;
 
   function loadSounds(config) {
     // Pre-Load All UI Sounds
-    sounds.UI = {};
-    var uiSounds = config.UI.SOUNDS;
-    for (var i=0; i < uiSounds.length; i++)
+    if (config.UI !== undefined)
     {
-      var sound = uiSounds[i];
-      sounds.UI[sound.id] = soundManager.createSound(
-        buildSoundOptions(sound)
-      );
+      sounds.UI = {};
+      var uiSounds = config.UI.SOUNDS;
+      for (var i=0; i < uiSounds.length; i++)
+      {
+        var sound = uiSounds[i];
+        sounds.UI[sound.id] = soundManager.createSound(
+          buildSoundOptions(sound)
+        );
+      }
+      currentMusic = sounds["UI"]["UI_TITLE_MUSIC"];
     }
-    currentMusic = sounds["UI"]["UI_TITLE_MUSIC"];
 
     // Pre-Load All Character Phrases
     for (var  characterName in config.CHARACTERS)
@@ -56,12 +150,25 @@ var AwesomeSounds;
       for (var i=0; i < characterPhrases.length; i++)
       {
         var phrase = characterPhrases[i];
-        sounds[characterName][phrase.TXT] = soundManager.createSound({
-          id: characterName + "_" + phrase.TXT,
-          url: phrase.SRC,
-          autoLoad: true,
-          volume: 100
-        });
+        if (initializedBySharing === true)
+        {
+          sounds[characterName][phrase.TXT] = soundManager.createSound({
+            id: characterName + "_" + phrase.TXT,
+            url: phrase.SRC,
+            autoLoad: true,
+            volume: 100,
+            onload: AwesomeSharing.checkLoadStatus
+          });
+        }
+        else
+        {
+          sounds[characterName][phrase.TXT] = soundManager.createSound({
+            id: characterName + "_" + phrase.TXT,
+            url: phrase.SRC,
+            autoLoad: true,
+            volume: 100
+          });
+        }
       }
     }
 
@@ -72,7 +179,6 @@ var AwesomeSounds;
       {
         soundOpts[opt] = opts[opt];
       }
-
       return soundOpts;
     }
   }
@@ -139,7 +245,7 @@ var AwesomeMessage;
 
     if (validationStatus === true)
     {
-      console.log("Valid Data, Ready to Go", shareData);
+      window.MyAwesomeSharing = AwesomeSharing(shareData, configData);
     }
     else
     {
@@ -160,7 +266,7 @@ var AwesomeMessage;
   }
 
   function getCharacterPhrasesAndTiming(configData) {
-    var fullUri = window.location.href;
+    var fullUri = decodeURI(window.location.href);
     var getParams = fullUri.slice(fullUri.indexOf('?') + 1).split('&');
     var data = {};
     var readers = {
@@ -216,6 +322,8 @@ var AwesomeMessage;
     {
       var phrases = shareRequest.P;
       var configCharacterPhrases = configData.CHARACTERS[shareRequest.C].PHRASES;
+
+      console.log(phrases, configCharacterPhrases);
       for (var i=phrases.length-1; i > -1; i--)
       {
         var phraseConfigAvailable = false;

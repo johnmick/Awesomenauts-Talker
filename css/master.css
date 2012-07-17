@@ -267,6 +267,17 @@ a:active
   }
 
 /*
+  Awesome Sharing Rules
+*/
+  td#PHRASES_MESSAGE
+  {
+    height:400px;
+    width:465px;
+    text-align:center;
+    font-size:40px;
+  }
+
+/*
   Classes for JavaScript Created Objects
 */
   div.AWESOME_ICON

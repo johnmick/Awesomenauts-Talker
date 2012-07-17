@@ -128,10 +128,12 @@ var AwesomeSounds;
 
 (function(){
   var sounds       = {},
-      currentMusic = undefined
+      currentMusic = undefined,
+      initializedBySharing = false
   ;
 
-  AwesomeSounds = function(config) {
+  AwesomeSounds = function(config, initByShare) {
+    initializedBySharing = initByShare;
     soundManager.setup({
       onready:function(){
         loadSounds(config);
@@ -154,16 +156,19 @@ var AwesomeSounds;
 
   function loadSounds(config) {
     // Pre-Load All UI Sounds
-    sounds.UI = {};
-    var uiSounds = config.UI.SOUNDS;
-    for (var i=0; i < uiSounds.length; i++)
+    if (config.UI !== undefined)
     {
-      var sound = uiSounds[i];
-      sounds.UI[sound.id] = soundManager.createSound(
-        buildSoundOptions(sound)
-      );
+      sounds.UI = {};
+      var uiSounds = config.UI.SOUNDS;
+      for (var i=0; i < uiSounds.length; i++)
+      {
+        var sound = uiSounds[i];
+        sounds.UI[sound.id] = soundManager.createSound(
+          buildSoundOptions(sound)
+        );
+      }
+      currentMusic = sounds["UI"]["UI_TITLE_MUSIC"];
     }
-    currentMusic = sounds["UI"]["UI_TITLE_MUSIC"];
 
     // Pre-Load All Character Phrases
     for (var  characterName in config.CHARACTERS)
@@ -173,12 +178,25 @@ var AwesomeSounds;
       for (var i=0; i < characterPhrases.length; i++)
       {
         var phrase = characterPhrases[i];
-        sounds[characterName][phrase.TXT] = soundManager.createSound({
-          id: characterName + "_" + phrase.TXT,
-          url: phrase.SRC,
-          autoLoad: true,
-          volume: 100
-        });
+        if (initializedBySharing === true)
+        {
+          sounds[characterName][phrase.TXT] = soundManager.createSound({
+            id: characterName + "_" + phrase.TXT,
+            url: phrase.SRC,
+            autoLoad: true,
+            volume: 100,
+            onload: AwesomeSharing.checkLoadStatus
+          });
+        }
+        else
+        {
+          sounds[characterName][phrase.TXT] = soundManager.createSound({
+            id: characterName + "_" + phrase.TXT,
+            url: phrase.SRC,
+            autoLoad: true,
+            volume: 100
+          });
+        }
       }
     }
 
@@ -189,7 +207,6 @@ var AwesomeSounds;
       {
         soundOpts[opt] = opts[opt];
       }
-
       return soundOpts;
     }
   }
@@ -363,10 +380,10 @@ var AwesomeVCR;
         phrases = phrases.substring(0, phrases.length-1);
         timing  = timing .substring(0, timing .length-1);
         var fullPath = window.location.href;
-        return fullPath.substring(0, fullPath.lastIndexOf("/") + 1) + "sharing.htm" +
+        return decodeURI(fullPath.substring(0, fullPath.lastIndexOf("/") + 1) + "sharing.htm" +
                "?c=" + character +
                "&p=" + phrases   +
-               "&t=" + timing;
+               "&t=" + timing);
       }
 
       function generateShareHTML()

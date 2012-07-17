@@ -124,10 +124,10 @@ var AwesomeVCR;
         phrases = phrases.substring(0, phrases.length-1);
         timing  = timing .substring(0, timing .length-1);
         var fullPath = window.location.href;
-        return fullPath.substring(0, fullPath.lastIndexOf("/") + 1) + "sharing.htm" +
+        return decodeURI(fullPath.substring(0, fullPath.lastIndexOf("/") + 1) + "sharing.htm" +
                "?c=" + character +
                "&p=" + phrases   +
-               "&t=" + timing;
+               "&t=" + timing);
       }
 
       function generateShareHTML()
