@@ -115,8 +115,10 @@ var AwesomePhrases;
       normalColor = "#FFFFFF",
       hoverColor  = "#FFFFD0",
       downColor   = "#FFFFE0",
+      highlightColor = "#D2FF60",
       frag      = document.createDocumentFragment(),
-      container
+      container,
+      phrasesTable = {}
   ;
 
   AwesomePhrases = function(config) {
@@ -125,7 +127,20 @@ var AwesomePhrases;
     return AwesomePhrases;
   };
 
+  AwesomePhrases.highlight = function(character, phrase) {
+    phrasesTable[character][phrase]._highlighting = true;
+    phrasesTable[character][phrase].style.fontWeight = "bold";
+    phrasesTable[character][phrase].style.color = highlightColor;
+  };
+
+  AwesomePhrases.unhighlight = function(character, phrase) {
+    phrasesTable[character][phrase]._highlighting = false;
+    phrasesTable[character][phrase].style.fontWeight = "normal";
+    phrasesTable[character][phrase].style.color = normalColor;
+  };
+
   AwesomePhrases.showPhrases = function(character, phrases) {
+    phrasesTable[character] = {};
     for (var i=phrases.length-1; i > -1; i--)
     {
       var phrase = document.createElement("DIV");
@@ -139,8 +154,8 @@ var AwesomePhrases;
         function() { this.style.color = hoverColor; }, // Hover On
         function() { this.style.color = normalColor; this.style.fontWeight = "normal"; }  // Hover Off
       );
-      $(phrase).mousedown( function(){ this.style.fontWeight = "bold"; this.style.color = downColor; } );
-      $(phrase).mouseup( function(){  this.style.fontWeight  = "normal"; this.style.color = normalColor; } );
+      $(phrase).mousedown( function(){ if (this._highlighting !== true ){this.style.fontWeight = "bold"; this.style.color = downColor;} });
+      $(phrase).mouseup( function(){  if (this._highlighting !==true){this.style.fontWeight  = "normal"; this.style.color = normalColor;} });
       $(phrase).click( function(){ 
         var data = $(this).data();
         this.style.fontWeight = "normal"; 
@@ -148,6 +163,7 @@ var AwesomePhrases;
         AwesomeSounds.play(data.Character, data.TXT);
         AwesomeVCR.RecordPhrase(data.TXT);
       });
+      phrasesTable[character][phrases[i].TXT.replace("'", '')] = phrase;
       frag.appendChild(phrase);
     }
     $(container).empty();
@@ -180,7 +196,21 @@ var AwesomeSounds;
   };
 
   AwesomeSounds.play = function(cat, track) {
-    sounds[cat] !== undefined ? sounds[cat][track] !== undefined ? sounds[cat][track].play() : notFound() : notFound();
+    if (sounds[cat] !== undefined)
+    {
+      if (sounds[cat][track] !== undefined)
+      {
+        sounds[cat][track].play();
+      }
+      else
+      {
+        notFound();
+      }
+    }
+    else
+    {
+      notFound();
+    }
     function notFound() { console.log("Unable to Find Sounds Reference to:", cat, track); }
   };
 
@@ -208,24 +238,31 @@ var AwesomeSounds;
       for (var i=0; i < characterPhrases.length; i++)
       {
         var phrase = characterPhrases[i];
+        var cleanPhrase = phrase.TXT.replace("'", '');
         if (initializedBySharing === true)
         {
-          sounds[characterName][phrase.TXT] = soundManager.createSound({
-            id: characterName + "_" + phrase.TXT.replace("'", ''),
+          sounds[characterName][cleanPhrase] = soundManager.createSound({
+            id: characterName + "_" + cleanPhrase,
             url: phrase.SRC,
             autoLoad: true,
             volume: 100,
-            onload: AwesomeSharing.checkLoadStatus
+            onload: AwesomeSharing.checkLoadStatus,
+            onfinish: function() {
+              AwesomePhrases.unhighlight(this.id.split('_')[0], this.id.split('_')[1]);
+            }
           });
         }
         else
         {
           sounds[characterName][phrase.TXT] = soundManager.createSound({
-            id: characterName + "_" + phrase.TXT.replace("'", ''),
+            id: characterName + "_" + cleanPhrase,
             url: phrase.SRC,
             autoLoad: true,
             volume: 100,
-            onload: AwesomeLoading.somethingLoaded
+            onload: AwesomeLoading.somethingLoaded,
+            onfinish: function() {
+              AwesomePhrases.unhighlight(this.id.split('_')[0], this.id.split('_')[1]);
+            }
           });
         }
       }
@@ -433,6 +470,7 @@ var AwesomeVCR;
 
   function play(playbackIndex) {
     function delayedPlayCall() {
+      AwesomePhrases.highlight(character, recording[playbackIndex].PHRASE.replace("'", ""));
       AwesomeSounds.play(character, recording[playbackIndex].PHRASE);
       play(++playbackIndex);
     }

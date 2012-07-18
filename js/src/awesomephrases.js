@@ -5,8 +5,10 @@ var AwesomePhrases;
       normalColor = "#FFFFFF",
       hoverColor  = "#FFFFD0",
       downColor   = "#FFFFE0",
+      highlightColor = "#D2FF60",
       frag      = document.createDocumentFragment(),
-      container
+      container,
+      phrasesTable = {}
   ;
 
   AwesomePhrases = function(config) {
@@ -15,7 +17,20 @@ var AwesomePhrases;
     return AwesomePhrases;
   };
 
+  AwesomePhrases.highlight = function(character, phrase) {
+    phrasesTable[character][phrase]._highlighting = true;
+    phrasesTable[character][phrase].style.fontWeight = "bold";
+    phrasesTable[character][phrase].style.color = highlightColor;
+  };
+
+  AwesomePhrases.unhighlight = function(character, phrase) {
+    phrasesTable[character][phrase]._highlighting = false;
+    phrasesTable[character][phrase].style.fontWeight = "normal";
+    phrasesTable[character][phrase].style.color = normalColor;
+  };
+
   AwesomePhrases.showPhrases = function(character, phrases) {
+    phrasesTable[character] = {};
     for (var i=phrases.length-1; i > -1; i--)
     {
       var phrase = document.createElement("DIV");
@@ -29,8 +44,8 @@ var AwesomePhrases;
         function() { this.style.color = hoverColor; }, // Hover On
         function() { this.style.color = normalColor; this.style.fontWeight = "normal"; }  // Hover Off
       );
-      $(phrase).mousedown( function(){ this.style.fontWeight = "bold"; this.style.color = downColor; } );
-      $(phrase).mouseup( function(){  this.style.fontWeight  = "normal"; this.style.color = normalColor; } );
+      $(phrase).mousedown( function(){ if (this._highlighting !== true ){this.style.fontWeight = "bold"; this.style.color = downColor;} });
+      $(phrase).mouseup( function(){  if (this._highlighting !==true){this.style.fontWeight  = "normal"; this.style.color = normalColor;} });
       $(phrase).click( function(){ 
         var data = $(this).data();
         this.style.fontWeight = "normal"; 
@@ -38,6 +53,7 @@ var AwesomePhrases;
         AwesomeSounds.play(data.Character, data.TXT);
         AwesomeVCR.RecordPhrase(data.TXT);
       });
+      phrasesTable[character][phrases[i].TXT.replace("'", '')] = phrase;
       frag.appendChild(phrase);
     }
     $(container).empty();

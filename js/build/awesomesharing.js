@@ -136,7 +136,21 @@ var AwesomeSounds;
   };
 
   AwesomeSounds.play = function(cat, track) {
-    sounds[cat] !== undefined ? sounds[cat][track] !== undefined ? sounds[cat][track].play() : notFound() : notFound();
+    if (sounds[cat] !== undefined)
+    {
+      if (sounds[cat][track] !== undefined)
+      {
+        sounds[cat][track].play();
+      }
+      else
+      {
+        notFound();
+      }
+    }
+    else
+    {
+      notFound();
+    }
     function notFound() { console.log("Unable to Find Sounds Reference to:", cat, track); }
   };
 
@@ -164,24 +178,31 @@ var AwesomeSounds;
       for (var i=0; i < characterPhrases.length; i++)
       {
         var phrase = characterPhrases[i];
+        var cleanPhrase = phrase.TXT.replace("'", '');
         if (initializedBySharing === true)
         {
-          sounds[characterName][phrase.TXT] = soundManager.createSound({
-            id: characterName + "_" + phrase.TXT.replace("'", ''),
+          sounds[characterName][cleanPhrase] = soundManager.createSound({
+            id: characterName + "_" + cleanPhrase,
             url: phrase.SRC,
             autoLoad: true,
             volume: 100,
-            onload: AwesomeSharing.checkLoadStatus
+            onload: AwesomeSharing.checkLoadStatus,
+            onfinish: function() {
+              AwesomePhrases.unhighlight(this.id.split('_')[0], this.id.split('_')[1]);
+            }
           });
         }
         else
         {
           sounds[characterName][phrase.TXT] = soundManager.createSound({
-            id: characterName + "_" + phrase.TXT.replace("'", ''),
+            id: characterName + "_" + cleanPhrase,
             url: phrase.SRC,
             autoLoad: true,
             volume: 100,
-            onload: AwesomeLoading.somethingLoaded
+            onload: AwesomeLoading.somethingLoaded,
+            onfinish: function() {
+              AwesomePhrases.unhighlight(this.id.split('_')[0], this.id.split('_')[1]);
+            }
           });
         }
       }

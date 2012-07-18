@@ -100,6 +100,7 @@ var AwesomeVCR;
 
   function play(playbackIndex) {
     function delayedPlayCall() {
+      AwesomePhrases.highlight(character, recording[playbackIndex].PHRASE.replace("'", ""));
       AwesomeSounds.play(character, recording[playbackIndex].PHRASE);
       play(++playbackIndex);
     }
