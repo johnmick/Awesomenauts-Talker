@@ -26,11 +26,11 @@
       "ICON_SRC": "./images/icons/froggy_g.png",
       "ICON_SRC_ALT": "./images/icons/froggy_g_hover.png",
       "PHRASES": [
-        { "TXT": "The",   "SRC": "./audio/ui/icon_click.wav", "X": 0, "Y": 0 },
-        { "TXT": "Frog",  "SRC": "./audio/ui/icon_mouse_over.wav", "X": 300, "Y": 40 },
-        { "TXT": "Can't", "SRC": "./audio/ui/icon_click.wav", "X": 150, "Y": 90 },
-        { "TXT": "Touch", "SRC": "./audio/ui/icon_mouse_over.wav", "X": 250, "Y": 160 },
-        { "TXT": "This",  "SRC": "./audio/ui/icon_click.wav", "X": 300, "Y": 280 }
+        { "TXT": "The",   "SRC": "./audio/ui/UIStart.mp3", "X": 0, "Y": 0 },
+        { "TXT": "Frog",  "SRC": "./audio/ui/UIOver.mp3", "X": 300, "Y": 40 },
+        { "TXT": "Can't", "SRC": "./audio/ui/UIStart.mp3", "X": 150, "Y": 90 },
+        { "TXT": "Touch", "SRC": "./audio/ui/UIOver.mp3", "X": 250, "Y": 160 },
+        { "TXT": "This",  "SRC": "./audio/ui/UIStart.mp3", "X": 300, "Y": 280 }
       ]
     },
 
@@ -39,11 +39,11 @@
       "ICON_SRC": "./images/icons/leon.png",
       "ICON_SRC_ALT": "./images/icons/leon_hover.png",
       "PHRASES": [
-        { "TXT": "Feel the",    "SRC": "./audio/ui/icon_click.wav", "X": 100, "Y": 30 },
-        { "TXT": "Sharpness of","SRC": "./audio/ui/icon_mouse_over.wav", "X": 300, "Y": 80 },
-        { "TXT": "This Blade",  "SRC": "./audio/ui/icon_click.wav", "X": 170, "Y": 190 },
-        { "TXT": "Fear the",    "SRC": "./audio/ui/icon_mouse_over.wav", "X": 250, "Y": 160 },
-        { "TXT": "Chameleon",   "SRC": "./audio/ui/icon_click.wav", "X": 100, "Y": 280 }
+        { "TXT": "Feel the",    "SRC": "./audio/ui/UIStart.mp3", "X": 100, "Y": 30 },
+        { "TXT": "Sharpness of","SRC": "./audio/ui/UIOver.mp3", "X": 300, "Y": 80 },
+        { "TXT": "This Blade",  "SRC": "./audio/ui/UIStart.mp3", "X": 170, "Y": 190 },
+        { "TXT": "Fear the",    "SRC": "./audio/ui/UIOver.mp3", "X": 250, "Y": 160 },
+        { "TXT": "Chameleon",   "SRC": "./audio/ui/UIStart.mp3", "X": 100, "Y": 280 }
       ]
     },
 
@@ -52,11 +52,11 @@
       "ICON_SRC": "./images/icons/lonestar.png",
       "ICON_SRC_ALT": "./images/icons/lonestar_hover.png",
       "PHRASES": [
-        { "TXT": "Time to",   "SRC": "./audio/ui/icon_click.wav", "X": 10, "Y": 20 },
-        { "TXT": "Kick Butt", "SRC": "./audio/ui/icon_mouse_over.wav", "X": 300, "Y": 40 },
-        { "TXT": "Chew",      "SRC": "./audio/ui/icon_click.wav", "X": 15, "Y": 90 },
-        { "TXT": "Tobacco",   "SRC": "./audio/ui/icon_mouse_over.wav", "X": 250, "Y": 160 },
-        { "TXT": "And",       "SRC": "./audio/ui/icon_click.wav", "X": 30, "Y": 280 }
+        { "TXT": "Time to",   "SRC": "./audio/ui/UIStart.mp3", "X": 10, "Y": 20 },
+        { "TXT": "Kick Butt", "SRC": "./audio/ui/UIOver.mp3", "X": 300, "Y": 40 },
+        { "TXT": "Chew",      "SRC": "./audio/ui/UIStart.mp3", "X": 15, "Y": 90 },
+        { "TXT": "Tobacco",   "SRC": "./audio/ui/UIOver.mp3", "X": 250, "Y": 160 },
+        { "TXT": "And",       "SRC": "./audio/ui/UIStart.mp3", "X": 30, "Y": 280 }
       ]
     },
 
@@ -65,11 +65,11 @@
       "ICON_SRC": "./images/icons/voltar.png",
       "ICON_SRC_ALT": "./images/icons/voltar_hover.png",
       "PHRASES": [
-        { "TXT": "More Technology", "SRC": "./audio/ui/icon_click.wav", "X": 10, "Y": 20 },
-        { "TXT": "I Require",       "SRC": "./audio/ui/icon_mouse_over.wav", "X": 300, "Y": 40 },
-        { "TXT": "Death To",        "SRC": "./audio/ui/icon_click.wav", "X": 150, "Y": 90 },
-        { "TXT": "Squishy",         "SRC": "./audio/ui/icon_mouse_over.wav", "X": 250, "Y": 160 },
-        { "TXT": "Things",          "SRC": "./audio/ui/icon_click.wav", "X": 300, "Y": 280 }
+        { "TXT": "More Technology", "SRC": "./audio/ui/UIStart.mp3", "X": 10, "Y": 20 },
+        { "TXT": "I Require",       "SRC": "./audio/ui/UIOver.mp3", "X": 300, "Y": 40 },
+        { "TXT": "Death To",        "SRC": "./audio/ui/UIStart.mp3", "X": 150, "Y": 90 },
+        { "TXT": "Squishy",         "SRC": "./audio/ui/UIOver.mp3", "X": 250, "Y": 160 },
+        { "TXT": "Things",          "SRC": "./audio/ui/UIStart.mp3", "X": 300, "Y": 280 }
       ]
     },
 
@@ -78,8 +78,8 @@
       "ICON_SRC": "./images/icons/yuri.png",
       "ICON_SRC_ALT": "./images/icons/yuri_hover.png",
       "PHRASES": [
-        { "TXT": "Shiny",      "SRC": "./audio/ui/icon_click.wav", "X": 10, "Y": 20 },
-        { "TXT": "Technology", "SRC": "./audio/ui/icon_mouse_over.wav", "X": 300, "Y": 40 }
+        { "TXT": "Shiny",      "SRC": "./audio/ui/UIStart.mp3", "X": 10, "Y": 20 },
+        { "TXT": "Technology", "SRC": "./audio/ui/UIOver.mp3", "X": 300, "Y": 40 }
       ]
     }
   }

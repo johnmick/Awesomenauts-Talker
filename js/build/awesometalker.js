@@ -211,7 +211,7 @@ var AwesomeSounds;
         if (initializedBySharing === true)
         {
           sounds[characterName][phrase.TXT] = soundManager.createSound({
-            id: characterName + "_" + phrase.TXT,
+            id: characterName + "_" + phrase.TXT.replace("'", ''),
             url: phrase.SRC,
             autoLoad: true,
             volume: 100,
@@ -221,7 +221,7 @@ var AwesomeSounds;
         else
         {
           sounds[characterName][phrase.TXT] = soundManager.createSound({
-            id: characterName + "_" + phrase.TXT,
+            id: characterName + "_" + phrase.TXT.replace("'", ''),
             url: phrase.SRC,
             autoLoad: true,
             volume: 100,
