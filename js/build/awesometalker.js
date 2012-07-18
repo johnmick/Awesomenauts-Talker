@@ -260,6 +260,8 @@ var AwesomeLoading;
   ;
 
   AwesomeLoading = function(config) {
+    $("#LEFT_COLUMN").hide();
+    $("#RIGHT_COLUMN").hide();
     loadingMessage = document.getElementById("MESSAGES");
     if (config.UI !== undefined)
     {
@@ -277,9 +279,10 @@ var AwesomeLoading;
     updateLoadingMessage();
     if (loaded == numSounds)
     {
-      $(loadingMessage).fadeOut();
-      $("#LEFT_COLUMN").fadeIn();
-      $("#RIGHT_COLUMN").fadeIn();
+      $(loadingMessage).fadeOut(400,function(){
+        $("#LEFT_COLUMN").fadeIn();
+        $("#RIGHT_COLUMN").fadeIn()
+      });
     }
   };
 
