@@ -1,7 +1,7 @@
 {
   "UI": {
     "SOUNDS":[
-      { "id": "UI_TITLE_MUSIC",     "url":"./audio/music/title.mp3", "autoPlay": false, "volume":10   },
+      { "id": "UI_TITLE_MUSIC",     "url":"./audio/music/title.mp3", "autoPlay": true, "volume":10   },
       { "id": "UI_ICON_CLICK",      "url":"./audio/ui/UIStart.mp3",  "autoPlay": false, "volume":100 },
       { "id": "UI_ICON_MOUSE_OVER", "url":"./audio/ui/UIOver.mp3",   "autoPlay": false, "volume":100 }
     ]
@@ -13,10 +13,11 @@
       "ICON_SRC": "./images/icons/clunk.png",
       "ICON_SRC_ALT": "./images/icons/clunk_hover.png",
       "PHRASES": [
-        { "TXT": "Ready", "SRC": "./audio/ui/icon_click.wav", "X": 10, "Y": 30 },
-        { "TXT": "To",    "SRC": "./audio/ui/icon_mouse_over.wav", "X": 400, "Y": 70 },
-        { "TXT": "Go",    "SRC": "./audio/ui/icon_click.wav", "X": 150, "Y": 130 },
-        { "TXT": "Clunk", "SRC": "./audio/ui/icon_mouse_over.wav", "X": 250, "Y": 260 }
+        { "TXT": "Amplifying", "SRC": "./audio/characters/clunk/Clunk_Amplifying.mp3", "X": 10,  "Y": 30 },
+        { "TXT": "Batteries",  "SRC": "./audio/characters/clunk/Clunk_Batteries.mp3",  "X": 300, "Y": 70 },
+        { "TXT": "Included",   "SRC": "./audio/characters/clunk/Clunk_Included.mp3",   "X": 150, "Y": 130 },
+        { "TXT": "Protocols",  "SRC": "./audio/characters/clunk/Clunk_Protocols.mp3",  "X": 10,  "Y": 330 },
+        { "TXT": "Range",      "SRC": "./audio/characters/clunk/Clunk_Range.mp3",      "X": 250, "Y": 260 }
       ]
     },
 
