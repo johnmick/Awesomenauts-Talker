@@ -9,7 +9,7 @@
 
   "CHARACTERS": {
     "Clunk": {
-      "PORTRAIT_SRC": "./images/portraits/clunk.jpg",
+      "PORTRAIT_SRC": "./images/portraits/clunk.png",
       "ICON_SRC": "./images/icons/clunk.png",
       "ICON_SRC_ALT": "./images/icons/clunk_hover.png",
       "PHRASES": [
@@ -34,7 +34,7 @@
     },
 
     "Leon": {
-      "PORTRAIT_SRC": "./images/portraits/leon.jpg",
+      "PORTRAIT_SRC": "./images/portraits/leon.png",
       "ICON_SRC": "./images/icons/leon.png",
       "ICON_SRC_ALT": "./images/icons/leon_hover.png",
       "PHRASES": [
