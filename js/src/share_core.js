@@ -57,11 +57,16 @@ var AwesomeSharing;
     }
   };
 
+  var playbackTimer = undefined;
+
   AwesomeSharing.playSounds = function() {
     var character = playbackData.C;
     var phrases   = playbackData.P;
     var timings   = playbackData.T;
-    var playbackTimer;
+    if (playbackTimer !== undefined)
+    {
+      clearTimeout(playbackTimer);
+    }
     play(0);
 
     function play(playbackIndex) {
