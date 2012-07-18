@@ -150,7 +150,8 @@ a:active
 */
   div#MESSAGES
   {
-    font-size:30px;
+    padding-top:150px;
+    font-size:25px;
     text-align:center;
   }
 

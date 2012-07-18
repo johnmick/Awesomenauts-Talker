@@ -3,15 +3,12 @@ var AwesomeTalker;
 
 (function(){
     AwesomeTalker = function(config) {
+      AwesomeTalker.AwesomeLoading  = AwesomeLoading(config);
       AwesomeTalker.AwesomeSelector = AwesomeSelector(config.CHARACTERS);
       AwesomeTalker.AwesomePhrases  = AwesomePhrases(config.CHARACTERS);
       AwesomeTalker.AwesomeSounds   = AwesomeSounds(config);
       AwesomeTalker.AwesomeVCR      = AwesomeVCR(config);
       AwesomeTalker.AwesomeMessage  = AwesomeMessage(config);
-
-      $("#LEFT_COLUMN").fadeIn();
-      $("#RIGHT_COLUMN").fadeIn();
-
 		  return AwesomeTalker;
     };
 })();
@@ -150,7 +147,7 @@ var AwesomeSounds;
   };
 
   AwesomeSounds.play = function(cat, track) {
-    sounds[cat] !== undefined ? sounds[cat][track] !== undefined ? (sounds[cat][track].play(),console.log(cat,track)) : notFound() : notFound();
+    sounds[cat] !== undefined ? sounds[cat][track] !== undefined ? sounds[cat][track].play() : notFound() : notFound();
     function notFound() { console.log("Unable to Find Sounds Reference to:", cat, track); }
   };
 
@@ -194,7 +191,8 @@ var AwesomeSounds;
             id: characterName + "_" + phrase.TXT,
             url: phrase.SRC,
             autoLoad: true,
-            volume: 100
+            volume: 100,
+            onload: AwesomeLoading.somethingLoaded
           });
         }
       }
@@ -207,6 +205,8 @@ var AwesomeSounds;
       {
         soundOpts[opt] = opts[opt];
       }
+      soundOpts.onload = AwesomeLoading.somethingLoaded;
+      soundOpts.autoLoad = true;
       return soundOpts;
     }
   }
@@ -214,6 +214,44 @@ var AwesomeSounds;
 
 // Before DOM Load - Configure SoundManager2 with Updated SWF Path
 soundManager.setup({url:"./swf/"});
+var AwesomeLoading;
+
+(function(){
+  var loadingMessage,
+      loadingPhrase = "Please wait a moment, now loading all these awesome sounds...<br/><br/>",
+      numSounds = 0,
+      loaded = 0
+  ;
+
+  AwesomeLoading = function(config) {
+    loadingMessage = document.getElementById("MESSAGES");
+    if (config.UI !== undefined)
+    {
+      numSounds += config.UI.SOUNDS.length;
+    }
+    for (var character in config.CHARACTERS)
+    {
+      numSounds += config.CHARACTERS[character].PHRASES.length;
+    }
+    updateLoadingMessage();
+  };
+
+  AwesomeLoading.somethingLoaded = function() {
+    loaded++;
+    updateLoadingMessage();
+    if (loaded == numSounds)
+    {
+      $(loadingMessage).fadeOut();
+      $("#LEFT_COLUMN").fadeIn();
+      $("#RIGHT_COLUMN").fadeIn();
+    }
+  };
+
+  function updateLoadingMessage() {
+    loadingMessage.innerHTML = loadingPhrase + loaded + " of " + numSounds + " ready";
+  }
+
+})();
 var AwesomeMessage;
 
 (function(){
@@ -426,7 +464,7 @@ var AwesomeVCR;
 (function(){
   // Obtain a Reference to the Loading Message Container and Update Label
   var loadingMessages = document.getElementById("MESSAGES");
-  loadingMessages.innerHTML = "Now Loading...";
+  loadingMessages.innerHTML = "Now Loading Configuration Data...";
   
   // Obtain Configuration Data File from Server
   $.ajax({
@@ -440,7 +478,6 @@ var AwesomeVCR;
   // Initialize Talker Object with Configuration Data
   // and store a global reference for ease of debugging
   function loadTalker(configData) {
-    loadingMessages.style.display = "none";
     window.MyAwesomeTalker = AwesomeTalker(configData);
   }
 

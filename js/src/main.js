@@ -8,7 +8,7 @@
 (function(){
   // Obtain a Reference to the Loading Message Container and Update Label
   var loadingMessages = document.getElementById("MESSAGES");
-  loadingMessages.innerHTML = "Now Loading...";
+  loadingMessages.innerHTML = "Now Loading Configuration Data...";
   
   // Obtain Configuration Data File from Server
   $.ajax({
@@ -22,7 +22,6 @@
   // Initialize Talker Object with Configuration Data
   // and store a global reference for ease of debugging
   function loadTalker(configData) {
-    loadingMessages.style.display = "none";
     window.MyAwesomeTalker = AwesomeTalker(configData);
   }
 

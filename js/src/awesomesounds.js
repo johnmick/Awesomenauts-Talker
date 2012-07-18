@@ -24,7 +24,7 @@ var AwesomeSounds;
   };
 
   AwesomeSounds.play = function(cat, track) {
-    sounds[cat] !== undefined ? sounds[cat][track] !== undefined ? (sounds[cat][track].play(),console.log(cat,track)) : notFound() : notFound();
+    sounds[cat] !== undefined ? sounds[cat][track] !== undefined ? sounds[cat][track].play() : notFound() : notFound();
     function notFound() { console.log("Unable to Find Sounds Reference to:", cat, track); }
   };
 
@@ -68,7 +68,8 @@ var AwesomeSounds;
             id: characterName + "_" + phrase.TXT,
             url: phrase.SRC,
             autoLoad: true,
-            volume: 100
+            volume: 100,
+            onload: AwesomeLoading.somethingLoaded
           });
         }
       }
@@ -81,6 +82,8 @@ var AwesomeSounds;
       {
         soundOpts[opt] = opts[opt];
       }
+      soundOpts.onload = AwesomeLoading.somethingLoaded;
+      soundOpts.autoLoad = true;
       return soundOpts;
     }
   }

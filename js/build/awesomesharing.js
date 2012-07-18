@@ -58,11 +58,16 @@ var AwesomeSharing;
     }
   };
 
+  var playbackTimer = undefined;
+
   AwesomeSharing.playSounds = function() {
     var character = playbackData.C;
     var phrases   = playbackData.P;
     var timings   = playbackData.T;
-    var playbackTimer;
+    if (playbackTimer !== undefined)
+    {
+      clearTimeout(playbackTimer);
+    }
     play(0);
 
     function play(playbackIndex) {
@@ -82,13 +87,22 @@ var AwesomeShareUI;
 
 (function(){
   AwesomeShareUI = function(characterConfig, phrases) {
-    console.log("Awesome Share UI", characterConfig, phrases);
     document.getElementById("LEFT_COLUMN").style.display = "block";
     document.getElementById("RIGHT_COLUMN").style.display = "block";
     document.getElementById("RIGHT_COLUMN").style.overflowX = "auto";
+    document.getElementById("RIGHT_COLUMN").style.height= "465px";
     document.getElementById("PHRASES").style.width = "445px";
     document.getElementById("PHRASES_MESSAGE").style.width = "445px";
     document.getElementById("PORTRAIT").style.backgroundImage = "url('" + characterConfig.PORTRAIT_SRC + "')";
+    document.getElementById("VCR").style.display = "block";
+    document.getElementById("VCR").style.position = "absolute";
+    document.getElementById("VCR").style.bottom = "10px";
+    document.getElementById("VCR").style.right = "10px";
+    document.getElementById("VCR").style.width = "400px";
+    $("#PLAY_BUTTON").click(AwesomeSharing.playSounds);
+    $("#SHARE_BUTTON").click(function(){
+      window.location.href="./index.htm";
+    });
     var phraseContainer = document.getElementById("PHRASES_MESSAGE");
     phraseContainer.innerHTML = '"' + phrases.join(" ") + '."';
 
@@ -122,7 +136,7 @@ var AwesomeSounds;
   };
 
   AwesomeSounds.play = function(cat, track) {
-    sounds[cat] !== undefined ? sounds[cat][track] !== undefined ? (sounds[cat][track].play(),console.log(cat,track)) : notFound() : notFound();
+    sounds[cat] !== undefined ? sounds[cat][track] !== undefined ? sounds[cat][track].play() : notFound() : notFound();
     function notFound() { console.log("Unable to Find Sounds Reference to:", cat, track); }
   };
 
@@ -166,7 +180,8 @@ var AwesomeSounds;
             id: characterName + "_" + phrase.TXT,
             url: phrase.SRC,
             autoLoad: true,
-            volume: 100
+            volume: 100,
+            onload: AwesomeLoading.somethingLoaded
           });
         }
       }
@@ -179,6 +194,8 @@ var AwesomeSounds;
       {
         soundOpts[opt] = opts[opt];
       }
+      soundOpts.onload = AwesomeLoading.somethingLoaded;
+      soundOpts.autoLoad = true;
       return soundOpts;
     }
   }
