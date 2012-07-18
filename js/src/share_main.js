@@ -94,8 +94,6 @@
     {
       var phrases = shareRequest.P;
       var configCharacterPhrases = configData.CHARACTERS[shareRequest.C].PHRASES;
-
-      console.log(phrases, configCharacterPhrases);
       for (var i=phrases.length-1; i > -1; i--)
       {
         var phraseConfigAvailable = false;
