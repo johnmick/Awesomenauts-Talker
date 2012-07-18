@@ -246,7 +246,10 @@ var AwesomeSounds;
 })();
 
 // Before DOM Load - Configure SoundManager2 with Updated SWF Path
-soundManager.setup({url:"./swf/"});
+soundManager.setup({
+  url:"./swf/",
+  useHighPerformance: true
+});
 var AwesomeLoading;
 
 (function(){
