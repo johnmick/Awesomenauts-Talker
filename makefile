@@ -2,7 +2,7 @@ APP_NAME = awesometalker
 
 SRC_DIR = js/src
 BUILD_DIR = js/build
-COMPILER_DIR = ~/GoogleClosure/compiler.jar
+COMPILER_DIR = /cygdrive/D/Google\ Closure\ Compiler/compiler.jar
 
 BASE_FILES = ${SRC_DIR}/intro.js\
 	${SRC_DIR}/core.js\
