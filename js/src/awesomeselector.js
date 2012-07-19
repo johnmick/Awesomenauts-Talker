@@ -85,6 +85,7 @@ var AwesomeSelector;
       if (data.Character !== currentCharacter)
       {
         AwesomeSounds.play("UI", "UI_ICON_CLICK");
+        AwesomeSounds.switchMusic(data.Character, "TITLE");
         AwesomePhrases.showPhrases(data.Character, data.PHRASES);
         AwesomeVCR.show();
         AwesomeVCR.reset();

@@ -99,6 +99,7 @@ var AwesomeSelector;
       if (data.Character !== currentCharacter)
       {
         AwesomeSounds.play("UI", "UI_ICON_CLICK");
+        AwesomeSounds.switchMusic(data.Character, "TITLE");
         AwesomePhrases.showPhrases(data.Character, data.PHRASES);
         AwesomeVCR.show();
         AwesomeVCR.reset();
@@ -190,8 +191,11 @@ var AwesomeSounds;
   };
 
   AwesomeSounds.switchMusic = function(category, track) {
-    currentMusic.stop();
-    currentMusic = sounds[category][track];
+    if (currentMusic !== undefined)
+    {
+      currentMusic.stop();
+    }
+    currentMusic = sounds[category].THEME;
     currentMusic.play();
   };
 
@@ -230,11 +234,26 @@ var AwesomeSounds;
       currentMusic = sounds["UI"]["UI_TITLE_MUSIC"];
     }
 
-    // Pre-Load All Character Phrases
+    // Pre-Load All Character Sounds
     for (var  characterName in config.CHARACTERS)
     {
       var characterPhrases = config.CHARACTERS[characterName].PHRASES;
       sounds[characterName] = {};
+
+      var themeSongConfig = config.CHARACTERS[characterName].THEME_SONG;
+      themeSongConfig.autoLoad = true;
+      if (initializedBySharing === true)
+      {
+        themeSongConfig.onload = AwesomeSharing.checkLoadStatus;
+      }
+      else
+      {
+        themeSongConfig.onload = AwesomeLoading.somethingLoaded;
+      }
+      sounds[characterName]["THEME"] = soundManager.createSound(themeSongConfig);
+
+
+      // Load Phrases
       for (var i=0; i < characterPhrases.length; i++)
       {
         var phrase = characterPhrases[i];
@@ -307,7 +326,9 @@ var AwesomeLoading;
     for (var character in config.CHARACTERS)
     {
       numSounds += config.CHARACTERS[character].PHRASES.length;
+      //numSounds++;  // Add One More for the Character Theme Track
     }
+    numSounds += 1;  // Number of Loaded Sounds Currently
     updateLoadingMessage();
   };
 
