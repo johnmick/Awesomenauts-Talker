@@ -248,7 +248,7 @@ var AwesomeSounds;
             volume: 100,
             onload: AwesomeSharing.checkLoadStatus,
             onfinish: function() {
-              AwesomePhrases.unhighlight(this.id.split('_')[0], this.id.split('_')[1]);
+              //AwesomeShareUI.highlightNextPhrase();
             }
           });
         }

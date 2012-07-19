@@ -67,16 +67,24 @@ var AwesomeSharing;
     {
       clearTimeout(playbackTimer);
     }
+    AwesomeShareUI.reset();
     play(0);
 
     function play(playbackIndex) {
       function delayedPlayCall() {
+        AwesomeShareUI.highlightNextPhrase();
         AwesomeSounds.play(character, phrases[playbackIndex]);
         play(++playbackIndex);
       }
       if (phrases[playbackIndex] !== undefined)
       {
         playbackTimer = setTimeout(delayedPlayCall, timings[playbackIndex]);
+      }
+      else
+      {
+        setTimeout(function(){
+          AwesomeShareUI.reset(true);
+        }, 500);
       }
     }
   }

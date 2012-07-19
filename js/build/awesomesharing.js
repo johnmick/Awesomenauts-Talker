@@ -68,16 +68,24 @@ var AwesomeSharing;
     {
       clearTimeout(playbackTimer);
     }
+    AwesomeShareUI.reset();
     play(0);
 
     function play(playbackIndex) {
       function delayedPlayCall() {
+        AwesomeShareUI.highlightNextPhrase();
         AwesomeSounds.play(character, phrases[playbackIndex]);
         play(++playbackIndex);
       }
       if (phrases[playbackIndex] !== undefined)
       {
         playbackTimer = setTimeout(delayedPlayCall, timings[playbackIndex]);
+      }
+      else
+      {
+        setTimeout(function(){
+          AwesomeShareUI.reset(true);
+        }, 500);
       }
     }
   }
@@ -86,6 +94,11 @@ var AwesomeSharing;
 var AwesomeShareUI;
 
 (function(){
+  var phraseReferences = [],
+      phraseContainer,
+      highlightIndex = 0
+  ;
+
   AwesomeShareUI = function(characterConfig, phrases) {
     document.getElementById("LEFT_COLUMN").style.display = "block";
     document.getElementById("RIGHT_COLUMN").style.display = "block";
@@ -103,11 +116,62 @@ var AwesomeShareUI;
     $("#SHARE_BUTTON").click(function(){
       window.location.href="./index.htm";
     });
-    var phraseContainer = document.getElementById("PHRASES_MESSAGE");
-    phraseContainer.innerHTML = '"' + phrases.join(" ") + '."';
+    phraseContainer = document.getElementById("PHRASES_MESSAGE");
+
+    for (var i=0; i < phrases.length; i++)
+    {
+      var word = document.createElement("span");
+      if (i===0)
+      {
+        word.innerHTML = '"' + phrases[i] + " ";
+      }
+      else if (i+1 === phrases.length)
+      {
+        word.innerHTML = phrases[i] + '."';
+      }
+      else
+      {
+        word.innerHTML = phrases[i] + " ";
+      }
+      phraseContainer.appendChild(word);
+      phraseReferences.push(word);
+    }
 
     return AwesomeShareUI;
   };
+
+  AwesomeShareUI.highlightNextPhrase = function() {
+    highlightIndex++;
+    if (highlightIndex !== 0)
+    {
+      phraseReferences[highlightIndex-1].style.fontWeight = "normal";
+      phraseReferences[highlightIndex-1].style.color = "#FFFFFF";
+    }
+    if (highlightIndex !== phraseReferences.length)
+    {
+      phraseReferences[highlightIndex].style.fontWeight = "bold";
+      phraseReferences[highlightIndex].style.color = "#D2FF60";
+    }
+    else
+    {
+
+    }
+  };
+
+  AwesomeShareUI.reset = function(option) {
+    highlightIndex = -1;
+    if ( option !== true )
+    {
+      phraseReferences[0].style.fontWeight = "bold";
+      phraseReferences[0].style.color = "#D2FF60";
+    }
+    else
+    {
+      phraseReferences[phraseReferences.length-1].style.fontWeight = "normal";
+      phraseReferences[phraseReferences.length-1].style.color = "#FFFFFF";
+
+    }
+  }
 
 })();
 var AwesomeSounds;
@@ -188,7 +252,7 @@ var AwesomeSounds;
             volume: 100,
             onload: AwesomeSharing.checkLoadStatus,
             onfinish: function() {
-              AwesomePhrases.unhighlight(this.id.split('_')[0], this.id.split('_')[1]);
+              //AwesomeShareUI.highlightNextPhrase();
             }
           });
         }
