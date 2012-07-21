@@ -290,4 +290,6 @@ a:active
     font-size:25px;
     cursor:pointer;
     padding:2px 2px 2px 2px;
+    white-space:nowrap;
+    overflow:hidden;
   }
