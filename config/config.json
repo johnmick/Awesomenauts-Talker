@@ -90,7 +90,7 @@
         { "TXT":"Touch The Fro", "SRC":"./audio/characters/froggy_g/Froggy_G_Touch_The_Fro.mp3", "X":0, "Y":370 },
         { "TXT":"What", "SRC":"./audio/characters/froggy_g/Froggy_G_What.mp3", "X":59, "Y":134 },
         { "TXT":"Yo Man I'm", "SRC":"./audio/characters/froggy_g/Froggy_G_Yo_Man_Im.mp3", "X":175, "Y":355 },
-        { "TXT":"Your Mamas", "SRC":"./audio/characters/froggy_g/Froggy_G_Your_Mamas.mp3", "X":320, "Y":370 }
+        { "TXT":"Your Mamas", "SRC":"./audio/characters/froggy_g/Froggy_G_Your_Mamas.mp3", "X":310, "Y":375 }
       ]
     },
 

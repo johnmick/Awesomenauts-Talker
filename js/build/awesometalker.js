@@ -148,7 +148,7 @@ var AwesomePhrases;
       $(phrase).data(phrases[i]);
       $(phrase).data("Character", character);
       phrase.className  = "PHRASE_BUTTON";
-      phrase.innerHTML  = phrases[i].TXT.replace("_", "", "g");
+      phrase.innerHTML  = phrases[i].TXT.replace(/_/g, "");
       phrase.style.top  = phrases[i].Y + "px";
       phrase.style.left = phrases[i].X + "px";
       $(phrase).hover(
