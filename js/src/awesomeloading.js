@@ -20,7 +20,7 @@ var AwesomeLoading;
       numSounds += config.CHARACTERS[character].PHRASES.length;
       //numSounds++;  // Add One More for the Character Theme Track
     }
-    numSounds += 1;  // Number of Loaded Sounds Currently
+    numSounds += 2;  // Number of Loaded Songs Currently
     updateLoadingMessage();
   };
 
