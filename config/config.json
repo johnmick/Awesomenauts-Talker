@@ -45,7 +45,7 @@
     },
 
     "Froggy G": {
-      "PORTRAIT_SRC": "./images/portraits/froggy_g.jpg",
+      "PORTRAIT_SRC": "./images/portraits/froggy_g.png",
       "ICON_SRC": "./images/icons/froggy_g.png",
       "ICON_SRC_ALT": "./images/icons/froggy_g_hover.png",
       "THEME_SONG": { "id": "FROGGY G_THEME", "url": "./audio/characters/froggy_g/Froggy_G_Theme.mp3", "autoPlay": false, "volume":10 },
@@ -109,7 +109,7 @@
     },
 
     "Lonestar": {
-      "PORTRAIT_SRC": "./images/portraits/lonestar.jpg",
+      "PORTRAIT_SRC": "./images/portraits/lonestar.png",
       "ICON_SRC": "./images/icons/lonestar.png",
       "ICON_SRC_ALT": "./images/icons/lonestar_hover.png",
       "THEME_SONG": { "id": "CLUNK_THEME", "url": "./audio/characters/clunk/Clunk_Theme.mp3", "autoPlay": false, "volume":10 },
@@ -123,7 +123,7 @@
     },
 
     "Voltar": {
-      "PORTRAIT_SRC": "./images/portraits/voltar.jpg",
+      "PORTRAIT_SRC": "./images/portraits/voltar.png",
       "ICON_SRC": "./images/icons/voltar.png",
       "ICON_SRC_ALT": "./images/icons/voltar_hover.png",
       "THEME_SONG": { "id": "CLUNK_THEME", "url": "./audio/characters/clunk/Clunk_Theme.mp3", "autoPlay": false, "volume":10 },
@@ -137,7 +137,7 @@
     },
 
     "Yuri": {
-      "PORTRAIT_SRC": "./images/portraits/yuri.jpg",
+      "PORTRAIT_SRC": "./images/portraits/yuri.png",
       "ICON_SRC": "./images/icons/yuri.png",
       "ICON_SRC_ALT": "./images/icons/yuri_hover.png",
       "THEME_SONG": { "id": "CLUNK_THEME", "url": "./audio/characters/clunk/Clunk_Theme.mp3", "autoPlay": false, "volume":10 },

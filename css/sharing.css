@@ -70,6 +70,12 @@ a:active
     display:none;
   }
 
+  table#AWESOME_PHRASES_TABLE
+  {
+    white-space:nowrap;
+    overflow:hidden;
+  }
+
   table#AWESOME_MESSAGE_TABLE
   {
     position:absolute;
@@ -173,6 +179,13 @@ a:active
   {
     width:465px;
     height:70px;
+  }
+
+  td#PHRASES_MESSAGE
+  {
+    background-color:#FF0000;
+    white-space:nowrap;
+    overflow:hidden;
   }
 
   div#PHRASES
@@ -282,4 +295,8 @@ a:active
     font-size:25px;
     cursor:pointer;
     padding:2px 2px 2px 2px;
+  }
+
+  span.PHRASE_SPAN
+  {
   }

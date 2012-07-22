@@ -117,10 +117,12 @@ var AwesomeShareUI;
       window.location.href="./index.htm";
     });
     phraseContainer = document.getElementById("PHRASES_MESSAGE");
+    phraseContainer.style.wordWrap ="nowrap";
 
     for (var i=0; i < phrases.length; i++)
     {
       var word = document.createElement("span");
+      word.className = "PHRASE_SPAN";
       var cleanPhrase = phrases[i].replace(/_/g, "");
       if (i===0)
       {
