@@ -28,17 +28,18 @@ var AwesomeShareUI;
     for (var i=0; i < phrases.length; i++)
     {
       var word = document.createElement("span");
+      var cleanPhrase = phrases[i].replace(/_/g, "");
       if (i===0)
       {
-        word.innerHTML = '"' + phrases[i] + " ";
+        word.innerHTML = '"' + cleanPhrase + " ";
       }
       else if (i+1 === phrases.length)
       {
-        word.innerHTML = phrases[i] + '."';
+        word.innerHTML = cleanPhrase + '."';
       }
       else
       {
-        word.innerHTML = phrases[i] + " ";
+        word.innerHTML = cleanPhrase + " ";
       }
       phraseContainer.appendChild(word);
       phraseReferences.push(word);

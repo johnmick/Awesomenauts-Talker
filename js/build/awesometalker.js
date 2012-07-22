@@ -257,7 +257,7 @@ var AwesomeSounds;
       for (var i=0; i < characterPhrases.length; i++)
       {
         var phrase = characterPhrases[i];
-        var cleanPhrase = phrase.TXT.replace("'", '');
+        var cleanPhrase = phrase.TXT.replace(/'/g, '');
         if (initializedBySharing === true)
         {
           sounds[characterName][cleanPhrase] = soundManager.createSound({

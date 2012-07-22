@@ -73,7 +73,7 @@ var AwesomeSharing;
     function play(playbackIndex) {
       function delayedPlayCall() {
         AwesomeShareUI.highlightNextPhrase();
-        AwesomeSounds.play(character, phrases[playbackIndex]);
+        AwesomeSounds.play(character, phrases[playbackIndex].replace(/'/g, ""));
         play(++playbackIndex);
       }
       if (phrases[playbackIndex] !== undefined)
