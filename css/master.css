@@ -236,6 +236,19 @@ a:active
     margin-left:30px;
   }
 
+  div#PLAY_SHARE_BUTTON
+  {
+    position:relative;
+    top:6px;
+    background:url('../images/vcr/play.png') center no-repeat; 
+    background-size:contain;
+    float:left;
+    width:92px;
+    height:18px;
+    cursor:pointer;
+
+  }
+
   div#RECORD_BUTTON
   {
     background:url('../images/vcr/record.png') center no-repeat;
@@ -267,6 +280,20 @@ a:active
     width:87px;
     height:18px;
     margin-left:50px;
+  }
+
+  div#MAKE_YOURS_BUTTON
+  {
+    position:relative;
+    float:left;
+    cursor:pointer;
+    /*
+    background:url('../images/vcr/share.png') center no-repeat;
+    background-size:contain;
+    */
+    padding:5px 5px 5px 5px;
+    margin-left:25px;
+    text-align:center;
   }
 
 /*

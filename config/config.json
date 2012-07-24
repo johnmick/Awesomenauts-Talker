@@ -100,11 +100,7 @@
       "ICON_SRC_ALT": "./images/icons/leon_hover.png",
       "THEME_SONG": { "id": "CLUNK_THEME", "url": "./audio/characters/clunk/Clunk_Theme.mp3", "autoPlay": false, "volume":10 },
       "PHRASES": [
-        { "TXT": "Feel the",    "SRC": "./audio/ui/UIStart.mp3", "X": 100, "Y": 30 },
-        { "TXT": "Sharpness of","SRC": "./audio/ui/UIOver.mp3", "X": 300, "Y": 80 },
-        { "TXT": "This Blade",  "SRC": "./audio/ui/UIStart.mp3", "X": 170, "Y": 190 },
-        { "TXT": "Fear the",    "SRC": "./audio/ui/UIOver.mp3", "X": 250, "Y": 160 },
-        { "TXT": "Chameleon",   "SRC": "./audio/ui/UIStart.mp3", "X": 100, "Y": 280 }
+
       ]
     },
 
@@ -114,11 +110,7 @@
       "ICON_SRC_ALT": "./images/icons/lonestar_hover.png",
       "THEME_SONG": { "id": "CLUNK_THEME", "url": "./audio/characters/clunk/Clunk_Theme.mp3", "autoPlay": false, "volume":10 },
       "PHRASES": [
-        { "TXT": "Time to",   "SRC": "./audio/ui/UIStart.mp3", "X": 10, "Y": 20 },
-        { "TXT": "Kick Butt", "SRC": "./audio/ui/UIOver.mp3", "X": 300, "Y": 40 },
-        { "TXT": "Chew",      "SRC": "./audio/ui/UIStart.mp3", "X": 15, "Y": 90 },
-        { "TXT": "Tobacco",   "SRC": "./audio/ui/UIOver.mp3", "X": 250, "Y": 160 },
-        { "TXT": "And",       "SRC": "./audio/ui/UIStart.mp3", "X": 30, "Y": 280 }
+
       ]
     },
 
@@ -128,11 +120,7 @@
       "ICON_SRC_ALT": "./images/icons/voltar_hover.png",
       "THEME_SONG": { "id": "CLUNK_THEME", "url": "./audio/characters/clunk/Clunk_Theme.mp3", "autoPlay": false, "volume":10 },
       "PHRASES": [
-        { "TXT": "More Technology", "SRC": "./audio/ui/UIStart.mp3", "X": 10, "Y": 20 },
-        { "TXT": "I Require",       "SRC": "./audio/ui/UIOver.mp3", "X": 300, "Y": 40 },
-        { "TXT": "Death To",        "SRC": "./audio/ui/UIStart.mp3", "X": 150, "Y": 90 },
-        { "TXT": "Squishy",         "SRC": "./audio/ui/UIOver.mp3", "X": 250, "Y": 160 },
-        { "TXT": "Things",          "SRC": "./audio/ui/UIStart.mp3", "X": 300, "Y": 280 }
+
       ]
     },
 
@@ -140,11 +128,63 @@
       "PORTRAIT_SRC": "./images/portraits/yuri.png",
       "ICON_SRC": "./images/icons/yuri.png",
       "ICON_SRC_ALT": "./images/icons/yuri_hover.png",
-      "THEME_SONG": { "id": "CLUNK_THEME", "url": "./audio/characters/clunk/Clunk_Theme.mp3", "autoPlay": false, "volume":10 },
+      "THEME_SONG": { "id": "YURI_THEME", "url": "./audio/characters/yuri/Yuri_Theme.mp3", "autoPlay": false, "volume":10 },
       "PHRASES": [
-        { "TXT": "Shiny",      "SRC": "./audio/ui/UIStart.mp3", "X": 10, "Y": 20 },
-        { "TXT": "Technology", "SRC": "./audio/ui/UIOver.mp3", "X": 300, "Y": 40 }
+        { "TXT":"Yuri", "SRC":"./audio/characters/yuri/Yuri_Yuri.mp3", "X":403, "Y":190 },
+        { "TXT":"Your head", "SRC":"./audio/characters/yuri/Yuri_Your_Head.mp3", "X":4, "Y":5 },
+        { "TXT":"You", "SRC":"./audio/characters/yuri/Yuri_You.mp3", "X":154, "Y":361 },
+        { "TXT":"Wonderful", "SRC":"./audio/characters/yuri/Yuri_Wonderful.mp3", "X":68, "Y":85 },
+        { "TXT":"Will make", "SRC":"./audio/characters/yuri/Yuri_Will_Make.mp3", "X":340, "Y":128 },
+        { "TXT":"Will", "SRC":"./audio/characters/yuri/Yuri_Will.mp3", "X":420, "Y":284 },
+        { "TXT":"Two", "SRC":"./audio/characters/yuri/Yuri_Two.mp3", "X":210, "Y":35 },
+        { "TXT":"Trophy", "SRC":"./audio/characters/yuri/Yuri_Trophy.mp3", "X":131, "Y":11 },
+        { "TXT":"To", "SRC":"./audio/characters/yuri/Yuri_To.mp3", "X":432, "Y":6 },
+        { "TXT":"Technology", "SRC":"./audio/characters/yuri/Yuri_Technology.mp3", "X":201, "Y":95 },
+        { "TXT":"SOS", "SRC":"./audio/characters/yuri/Yuri_SOS.mp3", "X":47, "Y":323 },
+        { "TXT":"Shiney", "SRC":"./audio/characters/yuri/Yuri_Shiney.mp3", "X":307, "Y":167 },
+        { "TXT":"Set", "SRC":"./audio/characters/yuri/Yuri_Set.mp3", "X":426, "Y":312 },
+        { "TXT":"Sequence", "SRC":"./audio/characters/yuri/Yuri_Sequence.mp3", "X":348, "Y":343 },
+        { "TXT":"Save our sapien", "SRC":"./audio/characters/yuri/Yuri_Save_Our_Sapien.mp3", "X":270, "Y":222 },
+        { "TXT":"Require", "SRC":"./audio/characters/yuri/Yuri_Require.mp3", "X":117, "Y":295 },
+        { "TXT":"Presently", "SRC":"./audio/characters/yuri/Yuri_Presently.mp3", "X":355, "Y":85 },
+        { "TXT":"Poo", "SRC":"./audio/characters/yuri/Yuri_Poo.mp3", "X":273, "Y":129 },
+        { "TXT":"Peel you", "SRC":"./audio/characters/yuri/Yuri_Peel_You.mp3", "X":131, "Y":229 },
+        { "TXT":"ooOOoo", "SRC":"./audio/characters/yuri/Yuri_ooOOoo.mp3", "X":279, "Y":39 },
+        { "TXT":"Oo ooo", "SRC":"./audio/characters/yuri/Yuri_Oo_ooo.mp3", "X":32, "Y":32 },
+        { "TXT":"oo oO OO", "SRC":"./audio/characters/yuri/Yuri_oo_oO_OO.mp3", "X":290, "Y":315 },
+        { "TXT":"Oo Oo AAAH", "SRC":"./audio/characters/yuri/Yuri_Oo_Oo_AAAH.mp3", "X":218, "Y":6 },
+        { "TXT":"oo OO AA", "SRC":"./audio/characters/yuri/Yuri_oo_OO_AA.mp3", "X":25, "Y":352 },
+        { "TXT":"oo OO", "SRC":"./audio/characters/yuri/Yuri_oo_OO.mp3", "X":7, "Y":169 },
+        { "TXT":"Oo ah", "SRC":"./audio/characters/yuri/Yuri_Oo_Ah.mp3", "X":122, "Y":46 },
+        { "TXT":"Oo", "SRC":"./audio/characters/yuri/Yuri_Oo.mp3", "X":433, "Y":163 },
+        { "TXT":"Need assistance", "SRC":"./audio/characters/yuri/Yuri_Need_Assistance.mp3", "X":194, "Y":65 },
+        { "TXT":"Motherland", "SRC":"./audio/characters/yuri/Yuri_Motherland.mp3", "X":89, "Y":262 },
+        { "TXT":"Make Like", "SRC":"./audio/characters/yuri/Yuri_Make_Liek.mp3", "X":61, "Y":203 },
+        { "TXT":"Like", "SRC":"./audio/characters/yuri/Yuri_Like.mp3", "X":221, "Y":287 },
+        { "TXT":"Launch", "SRC":"./audio/characters/yuri/Yuri_Launch.mp3", "X":206, "Y":352 },
+        { "TXT":"Laser", "SRC":"./audio/characters/yuri/Yuri_Laser.mp3", "X":300, "Y":280 },
+        { "TXT":"Initiated", "SRC":"./audio/characters/yuri/Yuri_Initiated.mp3", "X":182, "Y":165 },
+        { "TXT":"In", "SRC":"./audio/characters/yuri/Yuri_In.mp3", "X":390, "Y":276 },
+        { "TXT":"I will", "SRC":"./audio/characters/yuri/Yuri_I_Will.mp3", "X":18, "Y":263 },
+        { "TXT":"I fling", "SRC":"./audio/characters/yuri/Yuri_I_Fling.mp3", "X":129, "Y":111 },
+        { "TXT":"I", "SRC":"./audio/characters/yuri/Yuri_I.mp3", "X":24, "Y":209 },
+        { "TXT":"Huh", "SRC":"./audio/characters/yuri/Yuri_Huh.mp3", "X":10, "Y":97 },
+        { "TXT":"Help", "SRC":"./audio/characters/yuri/Yuri_Help.mp3", "X":376, "Y":15 },
+        { "TXT":"Extra", "SRC":"./audio/characters/yuri/Yuri_Extra.mp3", "X":108, "Y":167 },
+        { "TXT":"Defend", "SRC":"./audio/characters/yuri/Yuri_Defend.mp3", "X":116, "Y":323 },
+        { "TXT":"DEEfend", "SRC":"./audio/characters/yuri/Yuri_DEEfend.mp3", "X":343, "Y":250 },
+        { "TXT":"Crispy", "SRC":"./audio/characters/yuri/Yuri_Crispy.mp3", "X":312, "Y":195 },
+        { "TXT":"Be back", "SRC":"./audio/characters/yuri/Yuri_Be_Back.mp3", "X":0, "Y":58 },
+        { "TXT":"Bananaa", "SRC":"./audio/characters/yuri/Yuri_Bananaa.mp3", "X":197, "Y":195 },
+        { "TXT":"Banana", "SRC":"./audio/characters/yuri/Yuri_Banana.mp3", "X":296, "Y":365 },
+        { "TXT":"Attack", "SRC":"./audio/characters/yuri/Yuri_Attack.mp3", "X":31, "Y":294 },
+        { "TXT":"And split", "SRC":"./audio/characters/yuri/Yuri_And_Split.mp3", "X":226, "Y":252 },
+        { "TXT":"Ah oo hoo oo hoo oo", "SRC":"./audio/characters/yuri/Yuri_Ah_oo_hoo_oo_hoo_oo.mp3", "X":19, "Y":135 },
+        { "TXT":"Attack", "SRC":"./audio/characters/yuri/Yuri_AAttack.mp3", "X":213, "Y":321 },
+        { "TXT":"Aaah", "SRC":"./audio/characters/yuri/Yuri_AAAH.mp3", "X":397, "Y":43 },
+        { "TXT":"Aaaah", "SRC":"./audio/characters/yuri/Yuri_AAAAH.mp3", "X":34, "Y":234 }
       ]
+
     }
   }
 }

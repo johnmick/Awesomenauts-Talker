@@ -117,7 +117,6 @@ var AwesomeShareUI;
       window.location.href="./index.htm";
     });
     phraseContainer = document.getElementById("PHRASES_MESSAGE");
-    phraseContainer.style.wordWrap ="nowrap";
 
     for (var i=0; i < phrases.length; i++)
     {
@@ -251,6 +250,7 @@ var AwesomeSounds;
       if (initializedBySharing === true)
       {
         themeSongConfig.onload = AwesomeSharing.checkLoadStatus;
+        themeSongConfig.autoPlay = true;
       }
       else
       {

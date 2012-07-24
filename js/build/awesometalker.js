@@ -268,6 +268,7 @@ var AwesomeSounds;
       if (initializedBySharing === true)
       {
         themeSongConfig.onload = AwesomeSharing.checkLoadStatus;
+        themeSongConfig.autoPlay = true;
       }
       else
       {
