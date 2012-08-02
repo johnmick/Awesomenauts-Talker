@@ -72,9 +72,10 @@ a:active
 
   table#AWESOME_MESSAGE_TABLE
   {
-    position:absolute;
+    position:relative;
     top:0px;
-    left:0px;
+    width:100%;
+    text-align:center;
   }
 
   #SHARE_LINK_TEXT
@@ -122,6 +123,7 @@ a:active
 */
   div#LEFT_COLUMN
   {
+    display:none;
     margin:0px 10px 0px 10px;
     width:305px;
     height:500px;
@@ -133,6 +135,7 @@ a:active
   div#PORTRAIT_TITLE
   {
     height:70px;
+    font-size:19px;
   }
 
   div#PORTRAIT
@@ -158,6 +161,7 @@ a:active
 */
   div#RIGHT_COLUMN
   {
+    display:none;
     width:465px;
     height:500px;
     float:left;
@@ -326,3 +330,27 @@ a:active
     white-space:nowrap;
     overflow:hidden;
   }
+
+
+/*
+  Help CSS
+*/
+
+div#HELP
+{
+  text-align:left;
+  font-size:19px;
+  margin-top:100px;
+  font-weight:bold;
+  color:#FFFFB0;
+}
+
+div#VCR_HELP
+{
+  margin-top:15px;
+  margin-left:15px;
+  font-size:15px;
+  color:#FFFFFF;
+}
+  
+

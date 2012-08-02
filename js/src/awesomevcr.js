@@ -133,13 +133,9 @@ var AwesomeVCR;
 
       function generateShareHTML()
       {
-        return 'Copy Link Below and Paste to Share' +
-                '<input type="text" id="SHARE_LINK_TEXT" value="' + 
-                  generateShareLink() + 
-                '"></input><br/><br/>Or<br/><br/>' + 
-                '<a href="' + generateShareLink() + '" target="_blank">Click Here To Preview</a><br/><br/>'
-                ;
-        //return '<a href="' + generateShareLink() + '" target="_blank">Copy This Link To Share</a>';
+        return '<div style="text-align:center"><a href="' + generateShareLink() + 
+               '" target="_blank">Click Here To Preview</a><br/>' + 
+               'Or<br/>Right-Click and copy the link<br/>to share your recorded phrase</div>';
       }
 
       AwesomeMessage.show(

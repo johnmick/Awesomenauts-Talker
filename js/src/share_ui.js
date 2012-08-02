@@ -19,7 +19,7 @@ var AwesomeShareUI;
     document.getElementById("VCR").style.bottom = "10px";
     document.getElementById("VCR").style.right = "10px";
     document.getElementById("VCR").style.width = "400px";
-    $("#PLAY_BUTTON").click(AwesomeSharing.playSounds);
+    $("#PLAY_SHARE_BUTTON").click(AwesomeSharing.playSounds);
     $("#SHARE_BUTTON").click(function(){
       window.location.href="./index.htm";
     });
